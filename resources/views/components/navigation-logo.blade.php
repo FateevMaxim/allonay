@@ -1,1 +1,1 @@
-<img src="{{asset('images/logo.png')}}" width="190" alt="{{env('APP_NAME')}}">
+<img src="{{asset('favicons/192x192.png')}}" width="130" style="margin-top:10px;" alt="{{env('APP_NAME')}}">
