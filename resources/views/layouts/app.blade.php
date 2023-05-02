@@ -36,9 +36,10 @@
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <!-- Scripts -->
         @vite(['resources/js/app.js','resources/css/app.css'])
+
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen">
+        <div class=" min-h-screen bg-dots-darker bg-gray-100">
             @include('layouts.navigation')
 
             <!-- Page Heading -->

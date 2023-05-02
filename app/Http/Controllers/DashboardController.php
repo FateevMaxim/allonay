@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+
+    public function welcome (){
+        if (Auth::user()){
+            return redirect()->route('dashboard');
+        }
+
+        $clients = User::query()->where('type', null)->count();
+        return view('welcome', ['clients' => $clients]);
+    }
     public function index ()
     {
         $user = Auth::user();

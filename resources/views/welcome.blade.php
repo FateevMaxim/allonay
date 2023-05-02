@@ -37,28 +37,15 @@
                 </div>
 
                 <div class="mt-6">
-                        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
-
-                        <div class="flex items-center justify-center px-5 py-5" x-data="beer()" x-init="start()">
-                            <div class="text-gray-400">
-                                <h1 class="text-3xl text-center mb-3 font-extralight">Старт заказов из Китая начинается через</h1>
-                                <div class="text-6xl text-center flex w-full items-center justify-center">
-                                    <div class="w-24 mx-1 p-2 bg-white text-[#006fa3] rounded-lg">
-                                        <div class="font-mono leading-none" x-text="days">00</div>
-                                        <div class="font-mono uppercase text-sm leading-none">Дней</div>
-                                    </div>
-                                    <div class="w-24 mx-1 p-2 bg-white text-[#006fa3] rounded-lg">
-                                        <div class="font-mono leading-none" x-text="hours">00</div>
-                                        <div class="font-mono uppercase text-sm leading-none">Часов</div>
-                                    </div>
-                                    <div class="w-24 mx-1 p-2 bg-white text-[#006fa3] rounded-lg">
-                                        <div class="font-mono leading-none" x-text="minutes">00</div>
-                                        <div class="font-mono uppercase text-sm leading-none">Минут</div>
-                                    </div>
-                                    <div class="text-2xl mx-1 font-extralight">и</div>
-                                    <div class="w-24 mx-1 p-2 bg-white rounded-lg">
-                                        <div class="font-mono leading-none" x-text="seconds">00</div>
-                                        <div class="font-mono uppercase text-sm leading-none">Секунд</div>
+                        <div class="flex items-center justify-center px-5 py-5">
+                            <div class="text-gray-600">
+                                <h1 class="text-3xl text-center mb-3 font-extralight">Старт заказов из Китая начинается когда зарегистрируется 200 человек</h1>
+                                <h2 class="text-2xl text-center mb-3 font-extralight">Осталось {{200 - $clients}} человек(-а)</h2>
+                                <div class="w-full bg-[#6f6f6f]">
+                                    <div
+                                        class="bg-[#006fa3] p-2 text-center text-xl font-medium leading-none text-white"
+                                        style="width: {{$clients/(200/100)}}%">
+                                        {{$clients/(200/100)}}%
                                     </div>
                                 </div>
                             </div>
