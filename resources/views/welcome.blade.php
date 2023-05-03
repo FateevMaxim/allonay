@@ -79,7 +79,7 @@
                 <div class="mt-6">
                         <div class="flex items-center justify-center px-5 py-5">
                             <div class="text-gray-600">
-                                <h1 class="text-3xl text-center mb-3 font-extralight">Связаться с нами можно тут:</h1>
+                                <h1 class="text-3xl text-center mb-3 font-extralight">Связаться с нами</h1>
                                 <div class="w-full text-center">
                                     <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
                                     <div>
