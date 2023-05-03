@@ -20,8 +20,8 @@ class DashboardController extends Controller
             return redirect()->route('dashboard');
         }
 
-        $clients = User::query()->where('type', null)->count();
-        return view('welcome', ['clients' => $clients]);
+        $config = Configuration::query()->select( 'whats_app')->first();
+        return view('welcome', ['config' => $config]);
     }
     public function index ()
     {
