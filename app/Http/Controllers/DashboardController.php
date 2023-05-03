@@ -28,9 +28,6 @@ class DashboardController extends Controller
         $user = Auth::user();
         $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app')->first();
         $qr = QrCodes::query()->select()->where('id', 1)->first();
-        $qrUralsk = QrCodes::query()->select()->where('id', 2)->first();
-        $qrPetropavlovsk = QrCodes::query()->select()->where('id', 3)->first();
-        $qrAtyrau = QrCodes::query()->select()->where('id', 4)->first();
         $count = 0;
         $messages = Message::all();
         $cities = City::query()->select('title')->get();
@@ -56,63 +53,9 @@ class DashboardController extends Controller
             } elseif ($user->type === 'almatyin') {
                 $count = TrackList::query()->whereDate('to_almaty', Carbon::today())->count();
                 return view('almaty', ['count' => $count, 'config' => $config, 'cityin' => 'Алматы', 'qr' => $qr]);
-            }elseif ($user->type === 'kokshetauin') {
-                $count = TrackList::query()->whereDate('to_city', Carbon::today())->where('status', 'Получено на складе в Кокшетау')->count();
-                return view('almaty', ['count' => $count, 'config' => $config, 'cityin' => 'Кокшетау', 'qr' => $qr]);
-            }elseif ($user->type === 'astanain') {
-                $count = TrackList::query()->whereDate('to_city', Carbon::today())->where('status', 'Получено на складе в Астане')->count();
-                return view('almaty', ['count' => $count, 'config' => $config, 'cityin' => 'Астане', 'qr' => $qr]);
-            }elseif ($user->type === 'shimkentin') {
-                $count = TrackList::query()->whereDate('to_city', Carbon::today())->where('status', 'Получено на складе в Шымкенте')->count();
-                return view('almaty', ['count' => $count, 'config' => $config, 'cityin' => 'Шымкенте', 'qr' => $qr]);
-            }elseif ($user->type === 'zheskazganin') {
-                $count = TrackList::query()->whereDate('to_city', Carbon::today())->where('status', 'Получено на складе в Жезказгане')->count();
-                return view('almaty', ['count' => $count, 'config' => $config, 'cityin' => 'Жезказгане', 'qr' => $qr]);
-            }elseif ($user->type === 'aktobein') {
-                $count = TrackList::query()->whereDate('to_city', Carbon::today())->where('status', 'Получено на складе в Актобе')->count();
-                return view('almaty', ['count' => $count, 'config' => $config, 'cityin' => 'Актобе', 'qr' => $qr]);
-            }elseif ($user->type === 'taldikorganin') {
-                $count = TrackList::query()->whereDate('to_city', Carbon::today())->where('status', 'Получено на складе в Талдыкоргане')->count();
-                return view('almaty', ['count' => $count, 'config' => $config, 'cityin' => 'Талдыкоргане', 'qr' => $qr]);
-            }elseif ($user->type === 'uralskin') {
-                $count = TrackList::query()->whereDate('to_city', Carbon::today())->where('status', 'Получено на складе в Уральске')->count();
-                return view('almaty', ['count' => $count, 'config' => $config, 'cityin' => 'Уральске', 'qr' => $qrUralsk]);
-            }elseif ($user->type === 'petropavlovskin') {
-                $count = TrackList::query()->whereDate('to_city', Carbon::today())->where('status', 'Получено на складе в Петропавловске')->count();
-                return view('almaty', ['count' => $count, 'config' => $config, 'cityin' => 'Петропавловске', 'qr' => $qrPetropavlovsk]);
-            }elseif ($user->type === 'atyrauin') {
-                $count = TrackList::query()->whereDate('to_city', Carbon::today())->where('status', 'Получено на складе в Атырау')->count();
-                return view('almaty', ['count' => $count, 'config' => $config, 'cityin' => 'Атырау', 'qr' => $qrAtyrau]);
             } elseif ($user->type === 'almatyout') {
                 $count = TrackList::query()->whereDate('to_client_city', Carbon::today())->count();
                 return view('almatyout', ['count' => $count, 'config' => $config, 'cities' => $cities, 'cityin' => 'Алматы', 'qr' => $qr]);
-            } elseif ($user->type === 'kokshetauout') {
-                $count = TrackList::query()->whereDate('to_client_city', Carbon::today())->count();
-                return view('almatyout', ['count' => $count, 'config' => $config, 'cities' => $cities, 'cityin' => 'Кокшетау', 'qr' => $qr]);
-            } elseif ($user->type === 'shimkentout') {
-                $count = TrackList::query()->whereDate('to_client_city', Carbon::today())->count();
-                return view('almatyout', ['count' => $count, 'config' => $config, 'cities' => $cities, 'cityin' => 'Шымкенте', 'qr' => $qr]);
-            } elseif ($user->type === 'astanaout') {
-                $count = TrackList::query()->whereDate('to_client_city', Carbon::today())->count();
-                return view('almatyout', ['count' => $count, 'config' => $config, 'cities' => $cities, 'cityin' => 'Астане', 'qr' => $qr]);
-            } elseif ($user->type === 'zheskazganout') {
-                $count = TrackList::query()->whereDate('to_client_city', Carbon::today())->count();
-                return view('almatyout', ['count' => $count, 'config' => $config, 'cities' => $cities, 'cityin' => 'Жезказгане', 'qr' => $qr]);
-            } elseif ($user->type === 'aktobeout') {
-                $count = TrackList::query()->whereDate('to_client_city', Carbon::today())->count();
-                return view('almatyout', ['count' => $count, 'config' => $config, 'cities' => $cities, 'cityin' => 'Актобе', 'qr' => $qr]);
-            } elseif ($user->type === 'taldikorganout') {
-                $count = TrackList::query()->whereDate('to_client_city', Carbon::today())->count();
-                return view('almatyout', ['count' => $count, 'config' => $config, 'cities' => $cities, 'cityin' => 'Талдыкоргане', 'qr' => $qr]);
-            } elseif ($user->type === 'uralskout') {
-                $count = TrackList::query()->whereDate('to_client_city', Carbon::today())->count();
-                return view('almatyout', ['count' => $count, 'config' => $config, 'cities' => $cities, 'cityin' => 'Уральске', 'qr' => $qrUralsk]);
-            } elseif ($user->type === 'petropavlovskout') {
-                $count = TrackList::query()->whereDate('to_client_city', Carbon::today())->count();
-                return view('almatyout', ['count' => $count, 'config' => $config, 'cities' => $cities, 'cityin' => 'Петропавловске', 'qr' => $qrPetropavlovsk]);
-            } elseif ($user->type === 'atyrauout') {
-                $count = TrackList::query()->whereDate('to_client_city', Carbon::today())->count();
-                return view('almatyout', ['count' => $count, 'config' => $config, 'cities' => $cities, 'cityin' => 'Атырау', 'qr' => $qrAtyrau]);
             } elseif ($user->type === 'othercity') {
                 $count = TrackList::query()->whereDate('to_client', Carbon::today())->count();
                 return view('othercity')->with(compact('count', 'config', 'cities', 'qr'));
