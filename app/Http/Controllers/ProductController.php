@@ -355,7 +355,7 @@ class ProductController extends Controller
         $clients_auth = User::query()->where('type', null)->whereDate('login_date', Carbon::today())->count();
 
 
-        $tracks_today = ClientTrackList::query()->whereDay('created_at', Carbon::now()->day)->count();
+        $tracks_today = ClientTrackList::query()->whereDate('created_at', Carbon::today())->count();
         $tracks_month = ClientTrackList::query()->whereMonth('created_at', Carbon::now()->month)->count();
         $tracks_total = ClientTrackList::query()->count();
 
