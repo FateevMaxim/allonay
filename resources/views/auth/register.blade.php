@@ -37,7 +37,6 @@
         <div class="mt-4">
             <x-input-label for="city" :value="__('Город')" />
             <select id="city" name="city" class="block mt-1 w-full border-2 border-gray-300 rounded-md" required>
-                <option>Выберите город</option>
                     <option value="Алматы">Алматы</option>
             </select>
             <x-input-error :messages="$errors->get('city')" class="mt-2" />
