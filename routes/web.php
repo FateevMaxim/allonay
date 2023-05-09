@@ -23,6 +23,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 Route::get('/admin', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('admin');
+Route::get('/users-list', [DashboardController::class, 'usersList'])
+    ->middleware(['auth', 'verified'])->name('users-list');
 
 Route::get('/stock', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('stock');

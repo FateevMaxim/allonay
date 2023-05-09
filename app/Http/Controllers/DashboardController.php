@@ -84,6 +84,15 @@ class DashboardController extends Controller
             return view('dashboard')->with(compact('tracks', 'count', 'config'));
     }
 
+    public function usersList()
+    {
+        $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app')->first();
+        $messages = Message::all();
+        $search_phrase = '';
+        $users = User::query()->select('id', 'name', 'surname', 'type', 'login', 'city', 'is_active', 'block', 'password', 'created_at', 'login_date')->where('type', null)->orderByDesc('created_at')->paginate(50);
+        return view('users-list')->with(compact('users', 'messages', 'search_phrase', 'config'));
+    }
+
 
 
 }
