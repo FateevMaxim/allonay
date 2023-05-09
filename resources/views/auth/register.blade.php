@@ -37,7 +37,10 @@
         <div class="mt-4">
             <x-input-label for="city" :value="__('Город')" />
             <select id="city" name="city" class="block mt-1 w-full border-2 border-gray-300 rounded-md" required>
-                    <option value="Алматы">Алматы</option>
+                    @foreach($cities as $city)
+                        <option value="{{$city->title}}">{{$city->title}}</option>
+                    @endforeach
+
             </select>
             <x-input-error :messages="$errors->get('city')" class="mt-2" />
         </div>
