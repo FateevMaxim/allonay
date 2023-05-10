@@ -147,13 +147,13 @@
                                     Валюта
                                 </th>
                                 <th scope="col" class="px-6 py-3">
+                                    Продажа
+                                </th>
+                                <th scope="col" class="px-6 py-3">
                                     Покупка
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     4.9 ед.
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    25 ед.
                                 </th>
                             </tr>
                             </thead>
@@ -165,13 +165,13 @@
                                         {{$currency['title']}}
                                     </th>
                                     <td class="px-6 py-4">
+                                        {{round($currency['sell'],1)}} тг.
+                                    </td>
+                                    <td class="px-6 py-4">
                                         {{round($currency['buy'],1)}} тг.
                                     </td>
                                     <td class="px-6 py-4">
                                         {{round($currency['buy'] * 4.9,1)}} тг.
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        {{round($currency['buy'] * 25,1)}} тг.
                                     </td>
                                 </tr>
 
