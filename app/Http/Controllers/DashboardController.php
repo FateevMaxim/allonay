@@ -20,8 +20,28 @@ class DashboardController extends Controller
             return redirect()->route('dashboard');
         }
 
+            $currencies = array();
+            $url = "http://www.nationalbank.kz/rss/rates_all.xml";
+            $dataObj = simplexml_load_file($url);
+            if ($dataObj){
+                foreach ($dataObj->channel->item as $item)
+                    if ($item->title == 'USD') {
+                        $currencies[] = [
+                            'title' => $item->title,
+                            'sell' => floatval( str_replace( ',','.', $item->description ) ),
+                            'buy' => floatval( str_replace( ',','.', $item->description ) ) + (floatval( str_replace( ',','.', $item->description ) ) / 100)
+                        ];
+                    }else if ($item->title == 'CNY') {
+                        $currencies[] = [
+                            'title' => $item->title,
+                            'sell' => floatval( str_replace( ',','.', $item->description ) ),
+                            'buy' => floatval( str_replace( ',','.', $item->description ) ) + 5.15
+                        ];
+                    }
+                }
+
         $config = Configuration::query()->select( 'whats_app')->first();
-        return view('welcome', ['config' => $config]);
+        return view('welcome', ['config' => $config, 'currencies' => $currencies]);
     }
     public function index ()
     {
