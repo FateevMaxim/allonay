@@ -132,17 +132,17 @@
                                         </button></a>
                                     </div>
                                     <div>
-                                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                                             <button type="button" class="gray bg-primary mt-16">Войти</button>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table class="w-full text-sm text-left text-gray-500">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                            <tr>
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg dark:bg-gray-700">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase dark:text-white">
+                            <tr class="border dark:bg-gray-400 dark:border-white">
                                 <th scope="col" class="px-6 py-3">
                                     Валюта
                                 </th>
@@ -160,8 +160,8 @@
                             <tbody>
 
                             @foreach($currencies as $currency)
-                                <tr class="bg-white border-b hover:bg-gray-50">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                <tr class="border dark:bg-gray-400 dark:border-white">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{$currency['title']}}
                                     </th>
                                     <td class="px-6 py-4">
