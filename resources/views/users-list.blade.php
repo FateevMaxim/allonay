@@ -47,7 +47,7 @@
             </div>
             @if(Route::currentRouteName() != 'dashboard')
                 <div class="flex items-center justify-start mt-2 ml-6">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('result') }}">
                         <x-classic-button class="mx-auto mb-4 w-full">
                             {{ __('Назад') }}
                         </x-classic-button>
