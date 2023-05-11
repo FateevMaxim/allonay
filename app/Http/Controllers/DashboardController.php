@@ -31,12 +31,6 @@ class DashboardController extends Controller
                             'sell' => floatval( str_replace( ',','.', $item->description ) ),
                             'buy' => floatval( str_replace( ',','.', $item->description ) ) + (floatval( str_replace( ',','.', $item->description ) ) / 100)
                         ];
-                    }else if ($item->title == 'CNY') {
-                        $currencies[] = [
-                            'title' => $item->title,
-                            'sell' => floatval( str_replace( ',','.', $item->description ) ),
-                            'buy' => floatval( str_replace( ',','.', $item->description ) ) + 5.15
-                        ];
                     }
                 }
 
