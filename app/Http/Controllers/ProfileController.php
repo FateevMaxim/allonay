@@ -19,8 +19,10 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app')->first();
         return view('profile.edit', [
             'user' => $request->user(),
+            'config' => $config
         ]);
     }
 

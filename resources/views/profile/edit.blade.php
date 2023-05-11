@@ -1,3 +1,6 @@
+@if(isset($config->address)) @section( 'chinaaddress', $config->address ) @endif
+@if(isset($config->title_text)) @section( 'title_text', $config->title_text ) @endif
+@if(isset($config->address_two)) @section( 'address_two', $config->address_two ) @endif
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
