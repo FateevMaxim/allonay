@@ -168,8 +168,6 @@
                                         {{round($currencies['USD']['buy'] * 4.9,1)}} тг./кг.
                                     </td>
                                 </tr>
-
-
                             </tbody>
                         </table>
                     </div>
@@ -204,10 +202,7 @@
                             </tbody>
                         </table>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
         <script type="text/javascript">
@@ -215,7 +210,7 @@
             $("#weight").keyup(function(event) {
                 weight = $("#weight").val();
                     $("#dollarSum").val((weight * 4.9).toFixed(1))
-                    $("#tengeSum").val((weight * {{$currencies['USD']['buy']}}).toFixed(1))
+                    $("#tengeSum").val(((weight * 4.9) * {{$currencies['USD']['buy']}}).toFixed(1))
             });
         </script>
     </body>
