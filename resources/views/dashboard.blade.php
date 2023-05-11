@@ -101,28 +101,6 @@
                         </div>
                     @endforeach
                 @endif
-                @if(Route::currentRouteName() != 'archive')
-                <div class="grid grid-cols-1 mb-5 sm:grid-cols-4 ml-5 mr-5 gap-2">
-                        <div class="relative">
-                            <select id="currency" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                                <option selected value="CNY">Китайский Юань</option>
-                                <option value="USD">Доллар</option>
-                            </select>
-                            <label for="floating_filled" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Выберите валюту</label>
-                        </div>
-                        <div class="relative">
-                            <input type="text" value="5" id="startSum" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                            <label for="floating_filled" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Введите сумму в CNY/USD</label>
-                        </div>
-                        <div class="relative">
-                            <button class="w-full block btn btn-outline">Посчитать</button>
-                        </div>
-                        <div class="relative">
-                            <input type="text" id="resultSum" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" disabled placeholder=" " />
-                            <label for="floating_filled" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Сумма в тенге</label>
-                        </div>
-                </div>
-                @endif
                 <div class="grid grid-cols-1 sm:grid-cols-3 ml-5 mr-5 gap-2">
 
                     @foreach($tracks as $track)
@@ -248,32 +226,4 @@
                 </div>
             </div>
         </div>
-    @if(Route::currentRouteName() != 'archive')
-    <script type="text/javascript">
-        $(document).ready(function(){
-            currency = $("#currency").val();
-            startSum = $("#startSum").val();
-                $("#resultSum").val(Math.round(startSum * {{$currencies['CNY']['buy']}}))
-        });
-        /* прикрепить событие submit к форме */
-        $("#startSum").change(function(event) {
-            currency = $("#currency").val();
-            startSum = $("#startSum").val();
-            if (currency === 'USD'){
-                $("#resultSum").val(Math.round(startSum * {{$currencies['USD']['buy']}}))
-            }else{
-                $("#resultSum").val(Math.round(startSum * {{$currencies['CNY']['buy']}}))
-            }
-        });
-        $("#currency").change(function(event) {
-            currency = $("#currency").val();
-            startSum = $("#startSum").val();
-            if (currency === 'USD'){
-                $("#resultSum").val(Math.round(startSum * {{$currencies['USD']['buy']}}))
-            }else{
-                $("#resultSum").val(Math.round(startSum * {{$currencies['CNY']['buy']}}))
-            }
-        });
-    </script>
-    @endif
 </x-app-layout>

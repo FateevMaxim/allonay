@@ -26,7 +26,7 @@ class DashboardController extends Controller
             if ($dataObj){
                 foreach ($dataObj->channel->item as $item)
                     if ($item->title == 'USD') {
-                        $currencies[] = [
+                        $currencies['USD'] = [
                             'title' => $item->title,
                             'sell' => floatval( str_replace( ',','.', $item->description ) ),
                             'buy' => floatval( str_replace( ',','.', $item->description ) ) + (floatval( str_replace( ',','.', $item->description ) ) / 100)
@@ -46,27 +46,6 @@ class DashboardController extends Controller
         $messages = Message::all();
         $cities = City::query()->select('title')->get();
 
-
-        $currencies = array();
-        $url = "http://www.nationalbank.kz/rss/rates_all.xml";
-        $dataObj = simplexml_load_file($url);
-        if ($dataObj){
-            foreach ($dataObj->channel->item as $item)
-                if ($item->title == 'USD') {
-                    $currencies['USD'] = [
-                        'title' => $item->title,
-                        'sell' => floatval( str_replace( ',','.', $item->description ) ),
-                        'buy' => floatval( str_replace( ',','.', $item->description ) ) + (floatval( str_replace( ',','.', $item->description ) ) / 100)
-                    ];
-                }elseif($item->title == 'CNY'){
-                    $currencies['CNY'] = [
-                        'title' => $item->title,
-                        'sell' => floatval( str_replace( ',','.', $item->description ) ),
-                        'buy' => floatval( str_replace( ',','.', $item->description ) ) + 5.15
-                    ];
-                }
-        }
-
         if ($user->is_active === 1 && $user->type === null) {
             $tracks = ClientTrackList::query()
                 ->leftJoin('track_lists', 'client_track_lists.track_code', '=', 'track_lists.track_code')
@@ -79,7 +58,7 @@ class DashboardController extends Controller
                 ->get();
             $count = count($tracks);
 
-            return view('dashboard')->with(compact('tracks', 'count', 'messages', 'config', 'currencies'));
+            return view('dashboard')->with(compact('tracks', 'count', 'messages', 'config'));
         } elseif ($user->is_active === 1) {
 
             if ($user->type === 'stock') {

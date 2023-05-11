@@ -9,6 +9,8 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
         @vite(['resources/js/app.js','resources/css/app.css'])
         <!-- Styles -->
         <style>
@@ -75,13 +77,13 @@
                 </div>
             @endif--}}
 
-            <div class="max-w-7xl mx-auto p-6 lg:p-8">
+            <div class="max-w-7xl mx-auto p-2 lg:p-4">
                 <div class="flex justify-center">
                     <img src="{{asset('images/logo.png')}}" width="250" alt="{{ config('app.name', 'Laravel') }}">
                 </div>
 
-                <div class="mt-6">
-                        <div class="flex items-center justify-center px-5 py-5">
+                <div class="mt-2">
+                        <div class="flex items-center justify-center px-2 py-2">
                             <div class="text-gray-600">
                                 <h1 class="text-3xl text-center mb-3 font-extralight">Связаться с нами</h1>
                                 <div class="w-full text-center">
@@ -139,7 +141,7 @@
                                 </div>
                             </div>
                         </div>
-                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg dark:bg-gray-700">
+                    <div class="relative overflow-x-auto mt-2 shadow-md sm:rounded-lg dark:bg-gray-700">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase dark:text-white">
                             <tr class="border dark:bg-gray-400 dark:border-white">
@@ -155,21 +157,49 @@
                             </tr>
                             </thead>
                             <tbody>
-
-                            @foreach($currencies as $currency)
                                 <tr class="border dark:bg-gray-400 dark:border-white">
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{$currency['title']}}
+                                        {{$currencies['USD']['title']}}
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{round($currency['buy'],1)}} тг.
+                                        {{round($currencies['USD']['buy'],1)}} тг.
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{round($currency['buy'] * 4.9,1)}} тг./кг.
+                                        {{round($currencies['USD']['buy'] * 4.9,1)}} тг./кг.
                                     </td>
                                 </tr>
 
-                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2 dark:bg-gray-700">
+                        <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase dark:text-white">
+                            <tr class="border dark:bg-gray-400 dark:border-white">
+                                <th scope="col" class="px-6 py-3">
+                                    Вес, кг
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Сумма $
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Сумма тг.
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="border">
+                                <th scope="row" class="px-2 py-2 font-medium text-gray-900 whitespace-nowrap">
+                                    <input type="text" id="weight" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                </th>
+                                <td class="px-2 py-2">
+                                    <input type="text" id="dollarSum" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                </td>
+                                <td class="px-2 py-2">
+                                    <input type="text" id="tengeSum" class="rounded-t-lg w-3/4 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                </td>
+                            </tr>
 
                             </tbody>
                         </table>
@@ -180,5 +210,13 @@
 
             </div>
         </div>
+        <script type="text/javascript">
+            /* прикрепить событие submit к форме */
+            $("#weight").keyup(function(event) {
+                weight = $("#weight").val();
+                    $("#dollarSum").val((weight * 4.9).toFixed(1))
+                    $("#tengeSum").val((weight * {{$currencies['USD']['buy']}}).toFixed(1))
+            });
+        </script>
     </body>
 </html>
