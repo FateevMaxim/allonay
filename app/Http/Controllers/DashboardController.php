@@ -11,6 +11,7 @@ use App\Models\TrackList;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class DashboardController extends Controller
 {
@@ -22,8 +23,8 @@ class DashboardController extends Controller
 
             $currencies = array();
             $url = "http://www.nationalbank.kz/rss/rates_all.xml";
-            $dataObj = simplexml_load_file($url);
-            if ($dataObj){
+            //$dataObj = simplexml_load_file($url);
+           /* if ($dataObj){
                 foreach ($dataObj->channel->item as $item)
                     if ($item->title == 'USD') {
                         $currencies['USD'] = [
@@ -32,13 +33,32 @@ class DashboardController extends Controller
                             'buy' => floatval( str_replace( ',','.', $item->description ) ) + (floatval( str_replace( ',','.', $item->description ) ) / 100)
                         ];
                     }
-                }
+                }*/
+
+        $currencies['USD'] = [
+            'title' => 'USD',
+            'sell' => 442.5,
+            'buy' => 442.5 + (442.5) / 100
+        ];
 
         $config = Configuration::query()->select( 'whats_app')->first();
         return view('welcome', ['config' => $config, 'currencies' => $currencies]);
     }
     public function index ()
     {
+       /* $response = Telegram::getUpdates();
+        $phones = array();
+        $i = 1;
+        foreach ($response as $res){
+            if(!str_contains($res->message->text, '/')) {
+                $phones[$i]['login'] = $res->message->text;
+                $phones[$i]['tgID'] = $res->message->chat->id;
+                }
+            $i++;
+        }
+        foreach ($phones as $ph){
+            User::query()->where('login', '+'.$ph['login'])->update(['tgID' => $ph['tgID']]);
+        }*/
         $user = Auth::user();
         $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app')->first();
         $qr = QrCodes::query()->select()->where('id', 1)->first();
