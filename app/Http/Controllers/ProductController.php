@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class ProductController extends Controller
 {
@@ -31,6 +32,22 @@ class ProductController extends Controller
                 'created_at' => date(now()),
             ];
         }
+
+        foreach ($wordsFromFile as $item) {
+            $user = ClientTrackList::query()->select('user_id')->where('track_code', $item['track_code'])->first();
+            if ($user){
+                $messageTracks = '';
+                $userTracks = ClientTrackList::where('user_id', $user->user->id)->pluck('track_code')->toArray();
+                dd($userTracks);
+                Telegram::sendMessage(['chat_id' => $user->user->tgID, 'text' => 'Статус трека(-ов) - '.$messageTracks.' изменился на Получено в Китае']);
+                TrackList::where('id', $user->user->id)->update(['notification', true]);
+            }
+        }
+
+
+
+
+
         TrackList::insertOrIgnore($wordsFromFile);
         return response('success');
 
@@ -102,8 +119,15 @@ class ProductController extends Controller
                 'city' => $city,
                 'updated_at' => date(now()),
             ];
+
+            $user = ClientTrackList::query()->select('user_id')->where('track_code', $ar)->first();
+            if ($user){
+                Telegram::sendMessage(['chat_id' => $user->user->tgID, 'text' => 'Статус Вашего трек-кода изменился на '.$city_value]);
+            }
+
         }
         TrackList::upsert($wordsFromFile, ['track_code', $city_field, 'status', $reg_field, 'updated_at']);
+
         return redirect()->back()->with('message', 'Трек коды успешно добавлены');
 
     }
@@ -151,7 +175,12 @@ class ProductController extends Controller
                 'city' => $city,
                 'updated_at' => date(now()),
             ];
+            $user = ClientTrackList::query()->select('user_id')->where('track_code', $ar)->first();
+            if ($user){
+                Telegram::sendMessage(['chat_id' => $user->user->tgID, 'text' => 'Статус Вашего трек-кода изменился на '.$status]);
+            }
         }
+
         TrackList::upsert($wordsFromFile, ['track_code', $client_field, 'status', 'city', 'reg_client', 'updated_at']);
         return response('success');
 

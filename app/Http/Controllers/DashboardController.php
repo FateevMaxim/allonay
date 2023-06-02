@@ -37,8 +37,8 @@ class DashboardController extends Controller
 
         $currencies['USD'] = [
             'title' => 'USD',
-            'sell' => 442.5,
-            'buy' => 442.5 + (442.5) / 100
+            'sell' => 445,
+            'buy' => 445 + (445) / 100
         ];
 
         $config = Configuration::query()->select( 'whats_app')->first();

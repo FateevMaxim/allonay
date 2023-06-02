@@ -23,6 +23,7 @@ class User extends Authenticatable
         'login',
         'city',
         'password',
+        'tgID',
         'code',
         'is_post',
     ];
