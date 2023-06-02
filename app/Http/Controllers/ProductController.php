@@ -33,7 +33,7 @@ class ProductController extends Controller
             ];
         }
 
-        foreach ($wordsFromFile as $item) {
+        /*foreach ($wordsFromFile as $item) {
             $user = ClientTrackList::query()->select('user_id')->where('track_code', $item['track_code'])->first();
             if ($user){
                 $messageTracks = '';
@@ -42,9 +42,7 @@ class ProductController extends Controller
                 Telegram::sendMessage(['chat_id' => $user->user->tgID, 'text' => 'Статус трека(-ов) - '.$messageTracks.' изменился на Получено в Китае']);
                 TrackList::where('id', $user->user->id)->update(['notification', true]);
             }
-        }
-
-
+        }*/
 
 
 
