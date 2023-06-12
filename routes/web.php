@@ -29,6 +29,9 @@ Route::get('/users-list', [DashboardController::class, 'usersList'])
 Route::get('/stock', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('stock');
 
+    Route::get('/newstock', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('newstock');
+
 Route::get('/register-me', function () {
     return view('register-me');
 })->middleware(['auth', 'verified'])->name('register-me');

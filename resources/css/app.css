@@ -46,8 +46,8 @@
         max-height: 440px;
         overflow: auto;
     }
-    . {
-        min-height: 500px;
+    .min_height {
+       min-height: 500px;
     }
 }
 .bg-white {
