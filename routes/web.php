@@ -23,8 +23,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 Route::get('/admin', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('admin');
-Route::get('/users-list', [DashboardController::class, 'usersList'])
-    ->middleware(['auth', 'verified'])->name('users-list');
+
 
 Route::get('/stock', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('stock');
@@ -35,6 +34,7 @@ Route::get('/stock', [DashboardController::class, 'index'])
 Route::get('/register-me', function () {
     return view('register-me');
 })->middleware(['auth', 'verified'])->name('register-me');
+
 
 Route::middleware('auth')->group(function () {
     Route::post('/file-import', [ProductController::class, 'fileImport'])->name('file-import');
@@ -61,6 +61,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/track_report', [ReportController::class, 'getTrackReport'])->name('track_report');
 
     Route::get('/result', [ProductController::class, 'result'])->name('result');
+    Route::get('/users-list', [DashboardController::class, 'usersList'])->name('users-list');
+    Route::get('/users-rating', [DashboardController::class, 'usersRating'])->name('users-rating');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

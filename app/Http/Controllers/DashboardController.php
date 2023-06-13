@@ -132,4 +132,19 @@ class DashboardController extends Controller
 
 
 
+    public function usersRating (){
+        $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app')->first();
+        $userTracksCount = User::withCount(['clientTrackLists' => function ($query) {
+            $query->join('track_lists', 'client_track_lists.track_code', '=', 'track_lists.track_code');
+        }])
+        ->orderByDesc('client_track_lists_count')
+        ->get();
+
+
+        return view('users-rating')->with(compact('userTracksCount', 'config'));
+        /*foreach ($userTracksCount as $user) {
+            echo "Пользователь " . $user->id . " - " . $user->client_track_lists_count . "<br>";
+        }*/
+    }
+
 }

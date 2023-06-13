@@ -11,4 +11,9 @@ class ClientTrackList extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function trackList()
+    {
+        return $this->belongsTo(TrackList::class, 'track_code', 'track_code');
+    }
 }
