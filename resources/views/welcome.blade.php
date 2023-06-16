@@ -184,6 +184,9 @@
                                 <th scope="col" class="px-6 py-3">
                                     Сумма тг.
                                 </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Сумма +1%
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -197,6 +200,9 @@
                                 <td class="px-2 py-2">
                                     <input type="text" disabled id="tengeSum" class="rounded-t-lg w-3/4 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                 </td>
+                                <td class="px-2 py-2">
+                                    <input type="text" disabled id="tengeSumPer" class="rounded-t-lg w-3/4 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                </td>
                             </tr>
 
                             </tbody>
@@ -208,9 +214,11 @@
         <script type="text/javascript">
             /* прикрепить событие submit к форме */
             $("#weight").keyup(function(event) {
+
                 weight = $("#weight").val();
                     $("#dollarSum").val((weight * 4.9).toFixed(1))
                     $("#tengeSum").val(((weight * 4.9) * {{$currencies['USD']['buy']}}).toFixed(1))
+                    $("#tengeSumPer").val(((((weight * 4.9) * {{$currencies['USD']['buy']}})) + ((((weight * 4.9) * {{$currencies['USD']['buy']}})))/100).toFixed(1))
             });
         </script>
     </body>

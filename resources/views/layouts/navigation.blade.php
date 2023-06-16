@@ -61,6 +61,11 @@
 
                     <div class="p-2 mt-4 mb-2">
                         <div class="grid grid-cols-1 gap-4">
+                            <a href="https://t.me/+33PvpE4XvcAxZTNi" target="_blank" class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">{{ __('Уроки по Pinduoduo') }}</a>
+                        </div>
+                    </div>
+                    <div class="p-2 mt-4 mb-2">
+                        <div class="grid grid-cols-1 gap-4">
                             <a href="https://t.me/onayall" target="_blank" class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">{{ __('Telegram') }}</a>
                         </div>
                     </div>
