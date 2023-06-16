@@ -22,26 +22,15 @@ class DashboardController extends Controller
         }
 
             $currencies = array();
-            $url = "http://www.nationalbank.kz/rss/rates_all.xml";
-            //$dataObj = simplexml_load_file($url);
-           /* if ($dataObj){
-                foreach ($dataObj->channel->item as $item)
-                    if ($item->title == 'USD') {
-                        $currencies['USD'] = [
-                            'title' => $item->title,
-                            'sell' => floatval( str_replace( ',','.', $item->description ) ),
-                            'buy' => floatval( str_replace( ',','.', $item->description ) ) + (floatval( str_replace( ',','.', $item->description ) ) / 100)
-                        ];
-                    }
-                }*/
+
+        $config = Configuration::query()->select( 'whats_app', 'rate')->first();
 
         $currencies['USD'] = [
             'title' => 'USD',
-            'sell' => 446.5,
-            'buy' => 446.5 + (446.5) / 100
+            'sell' => $config->rate,
+            'buy' => $config->rate + ($config->rate) / 100
         ];
 
-        $config = Configuration::query()->select( 'whats_app')->first();
         return view('welcome', ['config' => $config, 'currencies' => $currencies]);
     }
     public function index ()
@@ -60,7 +49,7 @@ class DashboardController extends Controller
             User::query()->where('login', '+'.$ph['login'])->update(['tgID' => $ph['tgID']]);
         }*/
         $user = Auth::user();
-        $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app')->first();
+        $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app', 'rate')->first();
         $qr = QrCodes::query()->select()->where('id', 1)->first();
         $count = 0;
         $messages = Message::all();
@@ -97,9 +86,17 @@ class DashboardController extends Controller
                 $count = TrackList::query()->whereDate('to_client', Carbon::today())->count();
                 return view('othercity')->with(compact('count', 'config', 'cities', 'qr'));
             } elseif ($user->type === 'admin' || $user->type === 'moderator') {
+                $currencies = array();
+
+                $currencies['USD'] = [
+                    'title' => 'USD',
+                    'sell' => $config->rate,
+                    'buy' => $config->rate + ($config->rate) / 100
+                ];
+
                 $search_phrase = '';
                 $users = User::query()->select('id', 'name', 'surname', 'type', 'login', 'city', 'is_active', 'block', 'password', 'created_at')->where('type', null)->where('is_active', false)->get();
-                return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config'));
+                return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config', 'currencies'));
             }
         }
 
