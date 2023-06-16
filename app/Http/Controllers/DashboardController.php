@@ -27,8 +27,7 @@ class DashboardController extends Controller
 
         $currencies['USD'] = [
             'title' => 'USD',
-            'sell' => $config->rate,
-            'buy' => $config->rate + ($config->rate) / 100
+            'buy' => $config->rate
         ];
 
         return view('welcome', ['config' => $config, 'currencies' => $currencies]);
@@ -90,8 +89,7 @@ class DashboardController extends Controller
 
                 $currencies['USD'] = [
                     'title' => 'USD',
-                    'sell' => $config->rate,
-                    'buy' => $config->rate + ($config->rate) / 100
+                    'buy' => $config->rate
                 ];
 
                 $search_phrase = '';
@@ -128,8 +126,8 @@ class DashboardController extends Controller
     }
 
 
-
-    public function usersRating (){
+    public function usersRating ()
+    {
         $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app')->first();
         $userTracksCount = User::withCount(['clientTrackLists' => function ($query) {
             $query->join('track_lists', 'client_track_lists.track_code', '=', 'track_lists.track_code');
@@ -142,6 +140,15 @@ class DashboardController extends Controller
         /*foreach ($userTracksCount as $user) {
             echo "Пользователь " . $user->id . " - " . $user->client_track_lists_count . "<br>";
         }*/
+    }
+
+    public function rate ()
+    {
+        $config = Configuration::find(1);
+        $config->rate = $_REQUEST['rate'];
+        $config->save();
+
+        return redirect()->back()->with('message', 'Курс изменён!');
     }
 
 }
