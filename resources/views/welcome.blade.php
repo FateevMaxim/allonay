@@ -216,6 +216,7 @@
             $("#weight").keyup(function(event) {
 
                 weight = $("#weight").val();
+                    $("#dollarSum").val((weight * 4.9).toFixed(1))
                     $("#tengeSum").val(((weight * 4.9) * {{$currencies['USD']['buy']}}).toFixed(1))
                     $("#tengeSumPer").val(((((weight * 4.9) * {{$currencies['USD']['buy']}})) + ((((weight * 4.9) * {{$currencies['USD']['buy']}})))/100).toFixed(1))
             });
