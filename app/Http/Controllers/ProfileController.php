@@ -83,8 +83,14 @@ class ProfileController extends Controller
         $users = User::query()->where('login', 'LIKE', '%'.$request->phone.'%')->get();
         $messages = Message::all();
         $search_phrase = $request->phone;
-        $config = Configuration::query()->select('address')->first();
-        return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config'));
+        $config = Configuration::query()->select('address', 'rate')->first();
+        $currencies = array();
+
+                $currencies['USD'] = [
+                    'title' => 'USD',
+                    'buy' => $config->rate
+                ];
+        return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config', 'currencies'));
     }
 
     public function accessClient (Request $request)
