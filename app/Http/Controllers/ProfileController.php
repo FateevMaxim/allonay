@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\City;
 use App\Models\Configuration;
 use App\Models\Message;
 use App\Models\User;
@@ -20,9 +21,12 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app')->first();
+        $cities = City::query()->select('title')->where('title', '!=', $request->user()->city)->get();
+
         return view('profile.edit', [
             'user' => $request->user(),
-            'config' => $config
+            'config' => $config,
+            'cities' => $cities
         ]);
     }
 
@@ -32,6 +36,7 @@ class ProfileController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $user = User::find($request->user()->id);
+        $user->city = $request->city;
         $user->save();
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

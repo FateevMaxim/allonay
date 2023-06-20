@@ -27,8 +27,14 @@
         </div>
 
         <div>
-            <x-input-label for="city" :value="__('Город')" />
-            <x-text-input id="city" name="city" type="text" disabled class="mt-1 block w-full" :value="old('city', $user->city)" required autocomplete="city" />
+            <x-input-label for="city" :value="__('Пунк выдачи заказов')" />
+
+            <select id="city" name="city" class="block mt-1 w-full border-2 border-gray-300 rounded-md" required>
+                <option value="{{$user->city}}">{{$user->city}}</option>
+                @foreach($cities as $city)
+                    <option value="{{$city->title}}">{{$city->title}}</option>
+                @endforeach
+             </select>
             <x-input-error class="mt-2" :messages="$errors->get('city')" />
         </div>
         <x-primary-button>{{ __('Сохранить') }}</x-primary-button>
