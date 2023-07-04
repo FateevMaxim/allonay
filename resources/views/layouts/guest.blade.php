@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <!– PWA  –>
+        <!–- PWA  -–>
 
         <meta name="theme-color" content="#6777ef"/>
 
@@ -61,7 +61,7 @@
         </div>
     </body>
 
-    <script src=”{{ asset('/sw.js') }}”>
+    <script src="{{ asset('/sw.js') }}">
 
     </script>
 
