@@ -29,7 +29,7 @@
         <!-- Phone -->
         <div class="mt-4">
             <x-input-label for="phone" :value="__('Номер телефона')" />
-            <x-text-input id="login" class="block phone mt-1 w-full border-2" type="text" name="login" placeholder="+7 701 775 7272" :value="old('login')" required autocomplete="login" />
+            <x-text-input id="phoneInput" class="block phone mt-1 w-full border-2" type="text" name="login" placeholder="+7___________" :value="old('login')" required autocomplete="login" />
             <x-input-error :messages="$errors->get('login')" class="mt-2" />
         </div>
 
@@ -123,3 +123,13 @@
 
         <script src="{{ asset('/js/flowbite.js') }}"></script>
 </x-guest-layout>
+<script>
+    // Дождитесь загрузки страницы
+    document.addEventListener("DOMContentLoaded", function () {
+      // Получите поле формы
+      const phoneInput = document.getElementById("phoneInput");
+
+      // Примените маску
+      Inputmask("+7**********").mask(phoneInput);
+    });
+  </script>
