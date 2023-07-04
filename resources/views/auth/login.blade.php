@@ -94,12 +94,9 @@
     </form>
 </x-guest-layout>
 <script>
-    // Дождитесь загрузки страницы
-    document.addEventListener("DOMContentLoaded", function () {
-      // Получите поле формы
-      const phoneInput = document.getElementById("phoneInput");
-
-      // Примените маску
-      Inputmask("+7**********").mask(phoneInput);
-    });
-  </script>
+    var element = document.getElementById('phoneInput');
+ var maskOptions = {
+   mask: '+{7}0000000000'
+ };
+ var mask = IMask(element, maskOptions);
+   </script>
