@@ -173,8 +173,6 @@ class ProductController extends Controller
     {
         $tracks = TrackList::query()->select('track_code')->where('to_almaty', '!=', NULL)
             ->where('to_client', NULL)->get();
-        ClientTrackList::whereIn('track_code', $tracks)
-            ->update(['status' => 'Готово к выдаче', 'updated_at' => date(now())]);
         TrackList::where('to_almaty', '!=', NULL)
             ->where('to_client', NULL)
             ->update(['to_client' => date(now()), 'status' => 'Выдано клиенту']);
