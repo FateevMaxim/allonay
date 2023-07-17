@@ -145,7 +145,7 @@ class ProductController extends Controller
 
     public function almatyOut(Request $request)
     {
-        $status = "Выдано клиенту";
+        $status = "Готово к выдаче";
         if ($request["send"] === 'true'){
             $status = "Отправлено в Ваш город";
         }
