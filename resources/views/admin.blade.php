@@ -199,7 +199,7 @@
 
                                             <!-- Main modal -->
                                             <div id="defaultModalTracks{{$user->id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
-                                                <div class="relative w-1/2 max-w md:max-h-full">
+                                                <div class="relative w-full md:w-1/2 max-w md:max-h-full">
                                                     <!-- Modal content -->
                                                     <div class="relative bg-white rounded-lg shadow">
                                                         <!-- Modal header -->
@@ -217,8 +217,8 @@
                                                                 @foreach($user->trackLists as $tracks)
                                                                     @php
                                                                         $text = '';
-                                                                        if($tracks->status === 'Готово к выдаче'){ $text = 'text-green-700'; $date = $tracks->to_client; }
-                                                                        if($tracks->status === 'Получено в Китае'){ $date = $tracks->to_china; }
+                                                                        if($tracks->status === 'Готово к выдаче'){ $text = 'text-green-700'; $date = \Illuminate\Support\Carbon::parse($tracks->to_client)->format('Y-m-d'); }
+                                                                        if($tracks->status === 'Получено в Китае'){ $date = \Illuminate\Support\Carbon::parse($tracks->to_china)->format('Y-m-d'); }
 
 																	    echo '<span class="'.$text.'">'.$i. '. '. $tracks->track_code. ' - '. $tracks->status. ' от '.$date.'</span><br />';
 
