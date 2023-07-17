@@ -86,7 +86,7 @@ class ProfileController extends Controller
     public function searchClient (Request $request)
     {
         $users = User::with(['trackLists' => function ($query) {
-            $query->where('track_lists.status', '!=', 'Товар принят');
+            $query->where('track_lists.client_accept', '=', null);
         }])
             ->where('login', 'LIKE', '%'.$request->phone.'%')->get();
         $messages = Message::all();
