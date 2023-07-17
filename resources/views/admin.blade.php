@@ -208,7 +208,7 @@
                                                                 {{$user->login}}
                                                             </h3>
                                                         </div>
-                                                        <div class="text-base ml-4 leading-relaxed text-gray-500">
+                                                        <div class="text-sm font-light ml-2 text-gray-500">
                                                                 @php
                                                                     echo 'Всего треков: '. count($user->trackLists) .'<br />';
 																	$i = 1;
