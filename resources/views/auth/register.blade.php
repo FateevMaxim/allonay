@@ -28,7 +28,7 @@
 
         <!-- Phone -->
         <div class="mt-4">
-            <x-input-label for="phone" :value="__('Номер телефона')" />
+            <x-input-label for="phone" :value="__('Номер телефона с What`s App')" />
             <x-text-input id="phoneInput" class="block phone mt-1 w-full border-2" type="text" name="login" placeholder="+7___________" :value="old('login')" required autocomplete="login" />
             <x-input-error :messages="$errors->get('login')" class="mt-2" />
         </div>

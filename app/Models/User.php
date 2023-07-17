@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(ClientTrackList::class, 'user_id');
     }
+    public function trackLists()
+    {
+        return $this->hasManyThrough(TrackList::class, ClientTrackList::class, 'user_id', 'track_code', 'id', 'track_code');
+    }
+
 }

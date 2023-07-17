@@ -66,6 +66,16 @@
                             </div>
 
                             <div class="absolute w-full bottom-0 p-4">
+                                <form method="POST" action="{{ route('almatyout-product-all') }}" id="almatyOutAll">
+                                        <div class="w-full mb-2">
+                                            @csrf
+
+                                            <x-primary-button class="mx-auto w-full">
+                                                {{ __('Выдать все') }}
+                                            </x-primary-button>
+
+                                        </div>
+                                </form>
                                 <form method="POST" action="{{ route('almatyout-product') }}" id="almatyOut">
                                         <div class="w-full">
                                             @csrf
@@ -140,11 +150,10 @@
                                 /* собираем данные с элементов страницы: */
                                 var $form = $( this ),
                                     track_codes = $("#trackcode").text();
-                                    to_city = $("#city_name").text();
                                     url = $form.attr( 'action' );
 
                                 /* отправляем данные методом POST */
-                                $.post( url, { track_codes: track_codes, to_city: to_city } )
+                                $.post( url, { track_codes: track_codes } )
                                  .done(function( data ) {
                                      location.reload();
                                  });
@@ -152,18 +161,16 @@
                             });
 
                             /* прикрепить событие submit к форме */
-                            $("#clear").click(function(event) {
+                            $("#almatyOutAll").submit(function(event) {
                                 /* отключение стандартной отправки формы */
                                 event.preventDefault();
-
-                                    track_codes = $("#trackcode").text();
-                                url = 'almatyout-product';
-
+                                var $form = $( this ),
+                                url = $form.attr( 'action' );
                                 /* отправляем данные методом POST */
-                                $.post( url, { track_codes: track_codes, send: true } )
-                                    .done(function( data ) {
-                                        location.reload();
-                                    });
+                                $.post( url, { } )
+                                 .done(function( data ) {
+                                     location.reload();
+                                 });
 
                             });
 

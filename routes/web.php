@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/china-product', [ProductController::class, 'addChina'])->name('china-product');
     Route::post('/almatyin-product', [ProductController::class, 'almatyIn'])->name('almatyin-product');
     Route::post('/almatyout-product', [ProductController::class, 'almatyOut'])->name('almatyout-product');
+    Route::post('/almatyout-product-all', [ProductController::class, 'almatyOutAll'])->name('almatyout-product-all');
     Route::post('/getinfo-product', [ProductController::class, 'getInfoProduct'])->name('getinfo-product');
     Route::post('/client-product', [ProductController::class, 'addClient'])->name('client-product');
     Route::post('/accept-product', [ProductController::class, 'acceptProduct'])->name('accept-product');

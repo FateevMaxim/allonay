@@ -145,24 +145,12 @@ class ProductController extends Controller
 
     public function almatyOut(Request $request)
     {
-        if($request["city"] != 'Выберите город' && isset($request["city"])){
-            $city = $request["city"];
-        }else{
-            $city = null;
-        }
-
-        if($request["to_city"] != null) {
-            $city = $request["to_city"];
-        }
         $status = "Выдано клиенту";
         if ($request["send"] === 'true'){
             $status = "Отправлено в Ваш город";
         }
         $array =  preg_split("/\s+/", $request["track_codes"]);
         $client_field = 'to_client';
-        if (Auth::user()->type != 'othercity' && Auth::user()->type != 'almatyout'){
-            $client_field = 'to_client_city';
-        }
         $wordsFromFile = [];
         foreach ($array as $ar){
             $wordsFromFile[] = [
@@ -170,7 +158,6 @@ class ProductController extends Controller
                 $client_field => date(now()),
                 'status' => $status,
                 'reg_client' => 1,
-                'city' => $city,
                 'updated_at' => date(now()),
             ];
             $user = ClientTrackList::query()->select('user_id')->where('track_code', $ar)->first();
@@ -179,9 +166,20 @@ class ProductController extends Controller
             }
         }
 
-        TrackList::upsert($wordsFromFile, ['track_code', $client_field, 'status', 'city', 'reg_client', 'updated_at']);
+        TrackList::upsert($wordsFromFile, ['track_code', $client_field, 'status', 'reg_client', 'updated_at']);
         return response('success');
+    }
+    public function almatyOutAll()
+    {
+        $tracks = TrackList::query()->select('track_code')->where('to_almaty', '!=', NULL)
+            ->where('to_client', NULL)->get();
+        ClientTrackList::whereIn('track_code', $tracks)
+            ->update(['status' => 'Готово к выдаче', 'updated_at' => date(now())]);
+        TrackList::where('to_almaty', '!=', NULL)
+            ->where('to_client', NULL)
+            ->update(['to_client' => date(now()), 'status' => 'Выдано клиенту']);
 
+        return response('success');
     }
     public function getInfoProduct(Request $request)
     {

@@ -61,7 +61,6 @@ class DashboardController extends Controller
                     'track_lists.to_china', 'track_lists.to_almaty', 'track_lists.to_client', 'track_lists.to_city',
                     'track_lists.city', 'track_lists.to_client_city', 'track_lists.client_accept', 'track_lists.status')
                 ->where('client_track_lists.user_id', $user->id)
-                ->where('client_track_lists.status', null)
                 ->orderByDesc('client_track_lists.id')
                 ->get();
             $count = count($tracks);
@@ -79,7 +78,7 @@ class DashboardController extends Controller
                 $count = TrackList::query()->whereDate('to_almaty', Carbon::today())->count();
                 return view('almaty', ['count' => $count, 'config' => $config, 'cityin' => 'Алматы', 'qr' => $qr]);
             } elseif ($user->type === 'almatyout') {
-                $count = TrackList::query()->whereDate('to_client_city', Carbon::today())->count();
+                $count = TrackList::query()->whereDate('to_client', Carbon::today())->count();
                 return view('almatyout', ['count' => $count, 'config' => $config, 'cities' => $cities, 'cityin' => 'Алматы', 'qr' => $qr]);
             } elseif ($user->type === 'othercity') {
                 $count = TrackList::query()->whereDate('to_client', Carbon::today())->count();
