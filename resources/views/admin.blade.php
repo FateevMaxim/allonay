@@ -213,7 +213,7 @@
                                                                     echo 'Всего треков: '. count($user->trackLists) .'<br />';
 																	$i = 1;
                                                                  @endphp
-                                                                Готово к выдаче: {{ count($user->trackLists->where('status', 'Выдано клиенту')) }}<br />
+                                                                Готово к выдаче: {{ count($user->trackLists->where('status', 'Готово к выдаче')) }}<br />
                                                                 @foreach($user->trackLists as $tracks)
                                                                     @php
                                                                         $text = '';

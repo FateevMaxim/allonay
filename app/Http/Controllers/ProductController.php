@@ -175,7 +175,7 @@ class ProductController extends Controller
             ->where('to_client', NULL)->get();
         TrackList::where('to_almaty', '!=', NULL)
             ->where('to_client', NULL)
-            ->update(['to_client' => date(now()), 'status' => 'Выдано клиенту']);
+            ->update(['to_client' => date(now()), 'status' => 'Готово к выдаче']);
 
         return response('success');
     }
