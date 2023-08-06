@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\AccountingIn;
 use App\Models\City;
 use App\Models\Configuration;
 use App\Models\Message;
@@ -98,7 +99,8 @@ class ProfileController extends Controller
                     'title' => 'USD',
                     'buy' => $config->rate
                 ];
-        return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config', 'currencies'));
+        $accountingIns = AccountingIn::query()->select('id', 'created_at')->get();
+        return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config', 'currencies','accountingIns'));
     }
 
     public function accessClient (Request $request)

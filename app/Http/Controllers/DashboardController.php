@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccountingIn;
 use App\Models\City;
 use App\Models\ClientTrackList;
 use App\Models\Configuration;
@@ -93,6 +94,7 @@ class DashboardController extends Controller
                 ];
 
                 $search_phrase = '';
+
                 $users = User::query()->select('id', 'name', 'surname', 'type', 'login', 'city', 'is_active', 'block', 'password', 'created_at')->where('type', null)->where('is_active', false)->get();
                 return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config', 'currencies'));
             }

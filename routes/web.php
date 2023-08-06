@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AccountingController;
+use App\Http\Controllers\DeliveryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,6 +72,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('/rate', [DashboardController::class, 'rate'])->name('rate');
+
+
+    Route::get('/accounting', [AccountingController::class, 'accounting'])->name('accounting');
+    Route::post('/add-accounting-in', [AccountingController::class, 'addAccountingIn'])->name('add-accounting-in');
+    Route::get('/edit-accounting-in/{id}', [AccountingController::class, 'editAccountingIn'])->name('edit-accounting-in');
+    Route::post('/edit-accounting-in', [AccountingController::class, 'editAccountingInPost'])->name('edit-accounting-in');
+
+    Route::get('/delivery/{id}', [DeliveryController::class, 'delivery'])->name('delivery');
+    Route::post('/add-delivery', [DeliveryController::class, 'addDelivery'])->name('add-delivery');
+    Route::get('/delivery-out/{id}', [DeliveryController::class, 'deliveryOut'])->name('delivery-out');
 });
 
 require __DIR__.'/auth.php';
