@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class AccountingController extends Controller
 {
     public function accounting () {
-        $accountingIn = AccountingIn::all();
+        $accountingIn = AccountingIn::query()->orderByDesc('id');
         return view('accounting')->with(compact('accountingIn'));
     }
     public function addAccountingIn (Request $request) {
