@@ -60,9 +60,9 @@
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg mr-6 mb-4 mt-2 ml-6">
                 <div class="flex flex-col">
-                    <div class="overflow-hidden">
+                    <div class="overflow-x-auto">
                         <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                            <div class="overflow-hidden">
+                            <div class="overflow-x-auto">
                                 <table class="min-w-full text-left text-sm font-light">
                                     <thead
                                         class="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
