@@ -17,7 +17,7 @@
                     <div class="space-x-8 flex sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('accounting')" :active="request()->routeIs('accounting')">
                             {{ __('Бухгалтерия') }}
-                        </x-nav-link>v
+                        </x-nav-link>
                     </div>
                     @endif
                 </div>
