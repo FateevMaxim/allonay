@@ -69,7 +69,7 @@
                                     <tr>
                                         <th scope="col" class="px-6 py-4">#</th>
                                         <th scope="col" class="px-6 py-4">Клиент</th>
-                                        <th scope="col" class="px-6 py-4">Тенге</th>
+                                        <th scope="col" class="px-6 py-4">Тенге ({{ $totalAmount }})</th>
                                         <th scope="col" class="px-6 py-4">Вес</th>
                                         <th scope="col" class="px-6 py-4">Заметка</th>
                                         <th scope="col" class="px-6 py-4">Действие</th>

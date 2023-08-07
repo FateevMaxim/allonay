@@ -13,7 +13,10 @@ class DeliveryController extends Controller
         if (!$accountingOut){
             $accountingOut = [];
         }
-        return view('delivery')->with(compact('accountingOut'));
+        $totalAmount = AccountingOut::where('accounting_ins_id', $id)
+            ->where('status', true) // Фильтрация по статусу true
+            ->sum('amount_kz');
+        return view('delivery')->with(compact('accountingOut', 'totalAmount'));
     }
     public function addDelivery (Request $request) {
         $accountingOut = new AccountingOut();
