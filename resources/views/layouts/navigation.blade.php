@@ -13,7 +13,7 @@
                         </a>
                     </div>
                     <!-- Navigation Links -->
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <div class="space-x-8 flex sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('accounting')" :active="request()->routeIs('accounting')">
                             {{ __('Бухгалтерия') }}
                         </x-nav-link>
