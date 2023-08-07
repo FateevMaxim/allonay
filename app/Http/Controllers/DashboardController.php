@@ -94,9 +94,9 @@ class DashboardController extends Controller
                 ];
 
                 $search_phrase = '';
-
+                $accountingIns = [];
                 $users = User::query()->select('id', 'name', 'surname', 'type', 'login', 'city', 'is_active', 'block', 'password', 'created_at')->where('type', null)->where('is_active', false)->get();
-                return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config', 'currencies'));
+                return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config', 'currencies', 'accountingIns'));
             }
         }
 
