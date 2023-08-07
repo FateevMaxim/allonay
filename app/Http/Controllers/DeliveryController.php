@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class DeliveryController extends Controller
 {
     public function delivery ($id) {
-        $accountingOut = AccountingOut::where('accounting_ins_id', $id)->with('user')->get();
+        $accountingOut = AccountingOut::where('accounting_ins_id', $id)->with('user')->orderBy('status')->get();
         if (!$accountingOut){
             $accountingOut = [];
         }
