@@ -47,7 +47,7 @@
                     <div class="bg-[#b6da3a82] p-2 mt-8 mb-4">
                         <p class="mb-6 text-sm text-dark font-bold">Адрес склада в Китае</p>
                         <p class="mb-6 text-sm text-dark" id="china">@yield( 'chinaaddress' ) <br />
-                            收货人: <b>K997902({{ Auth::user()->login }})</b> <br />
+                            收货人: <b>ALL2023({{ Auth::user()->login }})</b> <br />
                             电话: <b>@yield( 'address_two' )</b>
                         </p>
                         <p class="mb-6 text-sm text-dark" style="display: none;" id="chinaaddress">@yield( 'address_two' )@yield( 'chinaaddress' )</p>
