@@ -397,6 +397,9 @@
                                                     <label for="amount_kz">Тенге</label>
                                                     <input type="text" name="amount_kz" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                                     <label for="weight">Вес</label>
+                                                    <label for="amount_kz">Тенге</label>
+                                                    <input type="text" name="amount_kz" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+
                                                     <input type="text" name="weight" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                                     <label for="note">Заметка</label>
                                                     <input type="text" name="note" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
