@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountingIn;
+use App\Models\AccountingOut;
 use App\Models\City;
 use App\Models\ClientTrackList;
 use App\Models\Configuration;
@@ -118,13 +119,13 @@ class DashboardController extends Controller
             return view('dashboard')->with(compact('tracks', 'count', 'config'));
     }
 
-    public function usersList()
+    public function accountingResult()
     {
-        $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app')->first();
-        $messages = Message::all();
-        $search_phrase = '';
-        $users = User::query()->select('id', 'name', 'surname', 'type', 'login', 'city', 'is_active', 'block', 'password', 'created_at', 'login_date')->where('type', null)->orderByDesc('created_at')->paginate(50);
-        return view('users-list')->with(compact('users', 'messages', 'search_phrase', 'config'));
+
+        $accountingIns = AccountingIn::sum('amount_kz');
+        $accountingOuts = AccountingOut::where('status', true) // Фильтрация по статусу true
+                ->sum('amount_kz');
+        return view('accounting-result')->with(compact('accountingIns', 'accountingOuts'));
     }
 
 

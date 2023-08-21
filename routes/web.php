@@ -64,7 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/track_report', [ReportController::class, 'getTrackReport'])->name('track_report');
 
     Route::get('/result', [ProductController::class, 'result'])->name('result');
-    Route::get('/users-list', [DashboardController::class, 'usersList'])->name('users-list');
+    Route::get('/accounting-result', [DashboardController::class, 'accountingResult'])->name('accounting-result');
     Route::get('/users-rating', [DashboardController::class, 'usersRating'])->name('users-rating');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
