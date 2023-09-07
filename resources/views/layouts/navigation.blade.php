@@ -56,7 +56,7 @@
 
                     <div class="bg-[#fab4b4] p-2 mt-4 mb-4">
                         <p><span>Образец</span></p>
-                        <img src="{{asset('images/china.jpg')}}" alt="China">
+                        <img src="{{asset('images/chinanew.jpg')}}" alt="China">
                     </div>
 
                     <hr class="h-px mt-4 bg-gray-200 border-0">
