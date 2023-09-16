@@ -57,55 +57,10 @@ class ProductController extends Controller
         $array =  preg_split("/\s+/", $request["track_codes"]);
         $wordsFromFile = [];
         $city = null;
-        if (Auth::user()->type === 'aktobein'){
-            $city_field = 'to_city';
-            $city_value = 'Получено на складе в Актобе';
-            $city = 'Актобе';
-            $reg_field = 'reg_city';
-        }elseif (Auth::user()->type === 'almatyin'){
+        if (Auth::user()->type === 'almatyin'){
             $city_field = 'to_almaty';
             $city_value = 'Получено на складе в Алматы';
             $reg_field = 'reg_almaty';
-        }elseif (Auth::user()->type === 'zheskazganin'){
-            $city_field = 'to_city';
-            $city_value = 'Получено на складе в Жезказгане';
-            $city = 'Жезказган';
-            $reg_field = 'reg_city';
-        }elseif (Auth::user()->type === 'shimkentin'){
-            $city_field = 'to_city';
-            $city_value = 'Получено на складе в Шымкенте';
-            $city = 'Шымкент';
-            $reg_field = 'reg_city';
-        }elseif (Auth::user()->type === 'astanain'){
-            $city_field = 'to_city';
-            $city_value = 'Получено на складе в Астане';
-            $city = 'Астана';
-            $reg_field = 'reg_city';
-        }elseif (Auth::user()->type === 'kokshetauin'){
-            $city_field = 'to_city';
-            $city_value = 'Получено на складе в Кокшетау';
-            $city = 'Кокшетау';
-            $reg_field = 'reg_city';
-        }elseif (Auth::user()->type === 'uralskin'){
-            $city_field = 'to_city';
-            $city_value = 'Получено на складе в Уральске';
-            $city = 'Уральск';
-            $reg_field = 'reg_city';
-        }elseif (Auth::user()->type === 'petropavlovskin') {
-            $city_field = 'to_city';
-            $city_value = 'Получено на складе в Петропавловске';
-            $city = 'Петропавловск';
-            $reg_field = 'reg_city';
-        }elseif (Auth::user()->type === 'atyrauin'){
-            $city_field = 'to_city';
-            $city_value = 'Получено на складе в Атырау';
-            $city = 'Атырау';
-            $reg_field = 'reg_city';
-        }else{
-            $city_field = 'to_city';
-            $city_value = 'Получено на складе в Талдыкоргане';
-            $city = 'Талдыкорган';
-            $reg_field = 'reg_city';
         }
 
         foreach ($array as $ar){
