@@ -71,6 +71,7 @@
                                         <th scope="col" class="px-6 py-4">Клиент</th>
                                         <th scope="col" class="px-6 py-4">Тенге ({{ number_format($totalAmount, 0, '.', ' ') }}) @if(isset($kaspi)) Kaspi - {{ number_format($kaspi, 0, '.', ' ') }} @endif</th>
                                         <th scope="col" class="px-6 py-4">Вес</th>
+                                        <th scope="col" class="px-6 py-4">Дата</th>
                                         <th scope="col" class="px-6 py-4">Заметка</th>
                                         <th scope="col" class="px-6 py-4">Действие</th>
                                     </tr>
@@ -83,6 +84,7 @@
                                             <td class="whitespace-nowrap px-6 py-4">{{ $ao->user->login }}</td>
                                             <td class="whitespace-nowrap px-6 py-4">{{ $ao->amount_kz }}</td>
                                             <td class="whitespace-nowrap px-6 py-4">{{ $ao->weight }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ \Illuminate\Support\Carbon::parse($ao->created_at)->format('Y-m-d') }}</td>
                                             <td class="whitespace-nowrap px-6 py-4">{{ $ao->note }}</td>
                                             <td class="whitespace-nowrap px-6 py-4">
                                                 <a href="{{ route('delivery-out', ['id' => $ao->id]) }}">
