@@ -115,10 +115,10 @@ class ProductController extends Controller
                 'reg_client' => 1,
                 'updated_at' => date(now()),
             ];
-            $user = ClientTrackList::query()->select('user_id')->where('track_code', $ar)->first();
+            /*$user = ClientTrackList::query()->select('user_id')->where('track_code', $ar)->first();
             if ($user){
                 Telegram::sendMessage(['chat_id' => $user->user->tgID, 'text' => 'Статус Вашего трек-кода изменился на '.$status]);
-            }
+            }*/
         }
 
         TrackList::upsert($wordsFromFile, ['track_code', $client_field, 'status', 'reg_client', 'updated_at']);
