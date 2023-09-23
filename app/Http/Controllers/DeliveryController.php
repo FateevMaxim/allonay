@@ -48,4 +48,17 @@ class DeliveryController extends Controller
         }
         return back()->with('message', 'Товары выданы');
     }
+
+    public function deliveryOutUsers ($id) {
+        $accountingOut = AccountingOut::where('user_id', $id)->where('status', false)->get();
+        if (!$accountingOut){
+            $accountingOut = [];
+        }
+
+        $totalAmount = AccountingOut::where('user_id', $id)
+            ->where('status', false) // Фильтрация по статусу true
+            ->sum('amount_kz');
+        $kaspi = $totalAmount + $totalAmount * 0.01 ;
+        return view('delivery')->with(compact('accountingOut', 'totalAmount', 'kaspi'));
+    }
 }

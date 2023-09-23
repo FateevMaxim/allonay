@@ -69,7 +69,7 @@
                                     <tr>
                                         <th scope="col" class="px-6 py-4">#</th>
                                         <th scope="col" class="px-6 py-4">Клиент</th>
-                                        <th scope="col" class="px-6 py-4">Тенге ({{ $totalAmount }})</th>
+                                        <th scope="col" class="px-6 py-4">Тенге ({{ number_format($totalAmount, 0, '.', ' ') }}) @if($kaspi) Kaspi - {{ number_format($kaspi, 0, '.', ' ') }} @endif</th>
                                         <th scope="col" class="px-6 py-4">Вес</th>
                                         <th scope="col" class="px-6 py-4">Заметка</th>
                                         <th scope="col" class="px-6 py-4">Действие</th>
@@ -85,7 +85,7 @@
                                             <td class="whitespace-nowrap px-6 py-4">{{ $ao->weight }}</td>
                                             <td class="whitespace-nowrap px-6 py-4">{{ $ao->note }}</td>
                                             <td class="whitespace-nowrap px-6 py-4">
-                                                <a href="/delivery-out/{{ $ao->id }}">
+                                                <a href="{{ route('delivery-out', ['id' => $ao->id]) }}">
                                                     @if($ao->status === 0)
                                                         <button
                                                         type="button"

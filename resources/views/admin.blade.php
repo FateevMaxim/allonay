@@ -316,13 +316,13 @@
                                     <p><small>Дата регистрации</small><br />
                                         <span>{{$user->created_at}}</span></p>
                                 </li>
-                                <li class="grid justify-center text-center gap-4">
-                                    <form method="POST" action="{{ route('client-access', ['id' => $user->id] ) }}" class="grid items-center w-full justify-end mt-4">
-                                        <x-classic-button>
+                                <li class="grid grid-cols-2 justify-center text-center gap-4 col-span-1">
+                                    <form method="POST" action="{{ route('client-access', ['id' => $user->id] ) }}">
+                                        <x-classic-button class="w-full">
                                             @if($user->is_active == true) {{ __('Заблокировать') }} @else {{ __('Дать доступ') }} @endif
                                         </x-classic-button>
                                     </form>
-                                    <x-secondary-button data-modal-target="editModal{{$user->id}}" data-modal-toggle="editModal{{$user->id}}" class="grid items-center w-full justify-end py-3">
+                                    <x-secondary-button data-modal-target="editModal{{$user->id}}" data-modal-toggle="editModal{{$user->id}}">
                                         Редактировать
                                     </x-secondary-button>
 
@@ -362,7 +362,7 @@
                                         </div>
                                     </div>
 
-                                    <x-secondary-button data-modal-target="new-delivery{{$user->id}}" data-modal-toggle="new-delivery{{$user->id}}" class="grid items-center w-full justify-end py-3">
+                                    <x-secondary-button data-modal-target="new-delivery{{$user->id}}" data-modal-toggle="new-delivery{{$user->id}}">
                                         Новая выдача
                                     </x-secondary-button>
 
@@ -410,6 +410,15 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <a href="{{ route('delivery-out-users', ['id' => $user->id] ) }}">
+                                        <button
+                                            type="submit"
+                                            class="bg-warning block items-center px-4 py-3 border border-transparent rounded-md font-semibold text-black text-xs uppercase tracking-widest  focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition
+ease-in-out duration-150 w-full">
+                                            Выдать товар
+                                        </button>
+                                    </a>
 
                                 </li>
                             </ul>
