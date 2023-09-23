@@ -99,7 +99,7 @@ class ProfileController extends Controller
                     'title' => 'USD',
                     'buy' => $config->rate
                 ];
-        $accountingIns = AccountingIn::query()->select('id', 'created_at')->where('status', false)->get();
+        $accountingIns = AccountingIn::query()->select('id', 'created_at')->where('status', false)->orderByDesc('created_at')->get();
         return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config', 'currencies','accountingIns'));
     }
 
