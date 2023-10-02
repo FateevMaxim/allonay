@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AccountingIn;
 use App\Models\Configuration;
+use App\Models\Withdraw;
 use Illuminate\Http\Request;
 
 class AccountingController extends Controller
@@ -41,6 +42,15 @@ class AccountingController extends Controller
         $accountingIn->note = $request["note"];
         $accountingIn->save();
         return redirect('accounting')->with('message', 'Данные о приходе обновлены');
+
+    }
+
+    public function addAccountingWithdraw (Request $request) {
+        $withdraw = new Withdraw();
+        $withdraw->amount = $request->amount;
+        $withdraw->note = $request->note;
+        $withdraw->save();
+        return redirect('accounting-result')->with('message', 'Новый расход добавлен');
 
     }
 }

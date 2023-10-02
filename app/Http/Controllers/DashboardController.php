@@ -11,6 +11,7 @@ use App\Models\Message;
 use App\Models\QrCodes;
 use App\Models\TrackList;
 use App\Models\User;
+use App\Models\Withdraw;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Telegram\Bot\Laravel\Facades\Telegram;
@@ -125,7 +126,9 @@ class DashboardController extends Controller
         $accountingIns = AccountingIn::sum('amount_kz');
         $accountingOuts = AccountingOut::where('status', true) // Фильтрация по статусу true
                 ->sum('amount_kz');
-        return view('accounting-result')->with(compact('accountingIns', 'accountingOuts'));
+        $withdraw = Withdraw::all();
+        $withdrawSum = Withdraw::sum('amount');
+        return view('accounting-result')->with(compact('accountingIns', 'accountingOuts', 'withdraw', 'withdrawSum'));
     }
 
 

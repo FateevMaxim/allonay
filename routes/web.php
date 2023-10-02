@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/accounting', [AccountingController::class, 'accounting'])->name('accounting');
+    Route::post('/add-accounting-withdraw', [AccountingController::class, 'addAccountingWithdraw'])->name('add-accounting-withdraw');
     Route::post('/add-accounting-in', [AccountingController::class, 'addAccountingIn'])->name('add-accounting-in');
     Route::get('/edit-accounting-in/{id}', [AccountingController::class, 'editAccountingIn'])->name('edit-accounting-in');
     Route::post('/edit-accounting-in', [AccountingController::class, 'editAccountingInPost'])->name('edit-accounting-in');

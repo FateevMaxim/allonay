@@ -95,6 +95,10 @@
                     </div>
                 @endforeach
             @endif
+
+            <h4 class="mb-2 mt-4 text-2xl text-center font-medium leading-tight text-primary">
+                Сводная таблица смысла работы
+            </h4>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 p-4">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -119,13 +123,79 @@
                                     {{ $accountingOuts }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $accountingOuts - $accountingIns }}
+                                    {{ round($accountingOuts - $accountingIns - $withdrawSum)}}
                                 </td>
                                 <!-- Main modal -->
                             </tr>
                     </tbody>
                 </table>
-                <div><i class="ml-4">Инвестировали своих по состоянию на 22.08.2023 - 758 долларов (пополам)</i></div>
+                <div><i class="ml-4">Инвестировали своих по состоянию на 02.10.2023 - 158 долларов (пополам)</i></div>
+            </div>
+
+            <h4 class="mb-1 mt-6 text-2xl text-center font-medium leading-tight text-primary">
+                Расходы из кассы
+            </h4>
+            <button data-modal-target="defaultModalRate" type="button"
+                    class="inline-block rounded bg-primary-accent-200 px-6 pb-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
+                    data-modal-toggle="defaultModalRate">
+                Добавить расход
+            </button>
+            <div class="overflow-x-auto">
+                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-left text-sm font-light">
+                            <thead
+                                class="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">#</th>
+                                <th scope="col" class="px-6 py-4">Дата</th>
+                                <th scope="col" class="px-6 py-4">Тенге</th>
+                                <th scope="col" class="px-6 py-4">Заметка</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($withdraw as $wd)
+                                <tr
+                                    class="border-b bg-neutral-100">
+                                    <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $wd->id }}</td>
+                                    <td class="whitespace-nowrap px-6 py-4"><a href="/edit-accounting-in/{{ $wd->id }}">{{ $wd->created_at }}</a></td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{ $wd->amount }}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{ $wd->note }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="defaultModalRate" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+                <div class="relative w-3/4 max-w-md md:h-auto">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow">
+                        <!-- Modal header -->
+                        <div class="justify-between bg-[#313131] text-center p-4 border-b rounded-t ">
+                            <h3 class="text-xl font-semibold text-white">
+                                Добавить расход
+                            </h3>
+                        </div>
+                        <form method="POST" action="{{ route('add-accounting-withdraw') }}">
+                            @csrf
+                            <div class="p-6 text-center space-y-6">
+                                <label for="amount">Сумма</label>
+                                <input type="text" name="amount" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                <label for="note">Комментарий</label>
+                                <input type="text" name="note" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="grid grid-cols-2 items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
+                                <button data-modal-hide="defaultModalRate" type="submit" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">Сохранить</button>
+                                <button data-modal-hide="defaultModalRate" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">Отмена</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
