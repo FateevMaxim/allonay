@@ -158,7 +158,7 @@
                                 <tr
                                     class="border-b bg-neutral-100">
                                     <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $wd->id }}</td>
-                                    <td class="whitespace-nowrap px-6 py-4"><a href="/edit-accounting-in/{{ $wd->id }}">{{ $wd->created_at }}</a></td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{ $wd->created_at }}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{ $wd->amount }}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{ $wd->note }}</td>
                                 </tr>
