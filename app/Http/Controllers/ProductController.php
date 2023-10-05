@@ -229,53 +229,59 @@ class ProductController extends Controller
 
     public function fileExport(Request $request)
     {
-        return Excel::download(new UsersExport($request['date'], $request['city']), 'users.xlsx');;
+        return Excel::download(new UsersExport($request['date'], $request['city']), 'users.xlsx');
     }
     public function result ()
     {
+        $endDate = now();
+        $startDate = $endDate->copy()->subMonths(2);
 
-        $chinaTracks = TrackList::select('id', 'to_china', DB::raw("DATE_FORMAT(to_china, '%m') as month_name"))
+        $chinaTracks = TrackList::select('id', 'to_china', DB::raw("DATE_FORMAT(to_china, '%b') as month_name"))
             ->whereYear('to_china', date('Y'))
+            ->whereBetween('to_china', [$startDate, $endDate])
             ->groupBy('to_china')
             ->pluck('id', 'month_name');
-
-        $almatyTracks = TrackList::select('id', 'to_almaty', DB::raw("DATE_FORMAT(to_almaty, '%m') as month_name"))
+        $almatyTracks = TrackList::select('id', 'to_almaty', DB::raw("DATE_FORMAT(to_almaty, '%b') as month_name"))
             ->whereYear('to_almaty', date('Y'))
+            ->whereBetween('to_china', [$startDate, $endDate])
             ->groupBy('to_almaty')
             ->pluck('id', 'month_name');
-        $clientTracks = TrackList::select('id', 'to_client', DB::raw("DATE_FORMAT(to_client, '%m') as month_name"))
+        $clientTracks = TrackList::select('id', 'to_client', DB::raw("DATE_FORMAT(to_client, '%b') as month_name"))
             ->whereYear('to_client', date('Y'))
+            ->whereBetween('to_china', [$startDate, $endDate])
             ->groupBy('to_client')
             ->pluck('id', 'month_name');
-
-        $datesTracks = ($chinaTracks)->merge($almatyTracks)->merge($clientTracks)->sortKeys();
-
+        $datesTracks = ($chinaTracks)->merge($almatyTracks)->merge($clientTracks);
         $datesTracks = $datesTracks->toArray();
+
         $labels = array_keys($datesTracks);
+        $labels = array_slice($labels, -3);
+
 
         $data = [];
         $data2 = [];
         $data3 = [];
 
         foreach ($labels as $dateT) {
-            $data[] = TrackList::query()->where('to_china', 'LIKE', '%-'.$dateT.'-%')->count();
-            $data2[] = TrackList::query()->where('to_almaty', 'LIKE', '%-'.$dateT.'-%')->count();
-            $data3[] = TrackList::query()->where('to_client', 'LIKE', '%-'.$dateT.'-%')->count();
+            $data[] = TrackList::query()->where('to_china', 'LIKE', '%-'.str_pad(date_parse($dateT)['month'], 2, '0', STR_PAD_LEFT).'-%')->count();
+            $data2[] = TrackList::query()->where('to_almaty', 'LIKE', '%-'.str_pad(date_parse($dateT)['month'], 2, '0', STR_PAD_LEFT).'-%')->count();
+            $data3[] = TrackList::query()->where('to_client', 'LIKE', '%-'.str_pad(date_parse($dateT)['month'], 2, '0', STR_PAD_LEFT).'-%')->count();
+
         }
 
         $arr = [
-            '01' => 'Янв.',
-            '02' => 'Фев.',
-            '03' => 'Март',
-            '04' => 'Апр.',
-            '05' => 'Май',
-            '06' => 'Июнь',
-            '07' => 'Июль',
-            '08' => 'Авг.',
-            '09' => 'Сен.',
-            '10.' => 'Окт.',
-            '11.' => 'Ноя.',
-            '12' => 'Дек.'
+            'Jan' => 'Янв.',
+            'Feb' => 'Фев.',
+            'Mar' => 'Март',
+            'Apr' => 'Апр.',
+            'May' => 'Май',
+            'Jun' => 'Июнь',
+            'Jul' => 'Июль',
+            'Aug' => 'Авг.',
+            'Sep' => 'Сен.',
+            'Oct' => 'Окт.',
+            'Nov' => 'Ноя.',
+            'Dec' => 'Дек.'
         ];
         $labels = array_map(function($v) use($arr) {
             return $arr[$v] ?? $v;
