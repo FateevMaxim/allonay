@@ -104,7 +104,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 ml-5 mr-5 gap-2">
 
                     @foreach($tracks as $track)
-                        <div class="w-full bg-white border border-indigo-200 rounded-lg shadow">
+                        <div class="w-full bg-white h-fit border border-indigo-200 rounded-lg shadow">
                             <ul class="grid grid-cols-1 p-3 text-xl font-medium text-white border-b border-gray-200 rounded-t-lg"
                                 @if($track->to_china == null && $track->to_almaty == null && $track->to_client == null && $track->client_accept == null && $track->to_city == null && $track->to_client_city == null) style="background-color: rgb(168 168 168);" @endif
                                 @if($track->created_at != null && $track->to_china != null && $track->to_almaty == null && $track->to_client == null && $track->client_accept == null && $track->to_city == null && $track->to_client_city == null) style="background-color: rgb(255 198 53);" @endif
@@ -163,26 +163,32 @@
                                         <p><small>Дата регистрации клиентом</small><br />
                                             <span> {{$track->created_at}}</span><p>
                                     </li>
+                                    @if($track->to_china != null)
                                     <li class="flex items-center">
-                                        <svg class="w-6 h-6 mr-1.5 @if($track->to_china == null) text-gray-200 @else text-green-400 @endif flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                        <svg class="w-6 h-6 mr-1.5  text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                                         <p><small>Получено на складе в Китае</small><br />
                                             <span>{{$track->to_china}}</span></p>
                                     </li>
+                                    @endif
+                                    @if($track->to_almaty != null)
                                     <li class="flex items-center">
-                                        <svg class="w-6 h-6 mr-1.5 @if($track->to_almaty == null) text-gray-200 @else text-green-400 @endif flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                        <p><small>Получено на складе в Алматы</small><br />
+                                        <svg class="w-6 h-6 mr-1.5 text-green-400  flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                        <p><small>На сортировке в Алматы</small><br />
                                             <span>{{$track->to_almaty}}</span></p>
                                     </li>
+                                    @endif
+                                    @if($track->to_client != null)
                                     <li class="flex items-center">
-                                        <svg class="w-6 h-6 mr-1.5 @if($track->to_client == null) text-gray-200 @else text-green-400 @endif flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                        <svg class="w-6 h-6 mr-1.5  text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                                         <p><small>@if($track->city != '') Отправлено в город - {{ $track->city }} @else Готово к выдаче @endif</small><br />
                                             <span>{{$track->to_client}}</span></p>
                                     </li>
+                                    @endif
 
                                     @if($track->to_city != null)
                                     <li class="flex items-center">
                                         <svg class="w-6 h-6 mr-1.5 @if($track->to_city == null) text-gray-200 @else text-green-400 @endif flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                        <p><small>Получено на складе ({{ ($track->city) }})</small><br />
+                                        <p><small>На сортировке в ({{ ($track->city) }})</small><br />
                                             <span>{{$track->to_city}}</span></p>
                                     </li>
                                     <li class="flex items-center">
@@ -192,13 +198,13 @@
                                     </li>
                                     @endif
                                     <li class="grid items-center">
-
+                                        @if($track->client_accept != null)
                                         <div class="flex">
-                                            <svg class="w-6 h-6 mr-1.5 @if($track->client_accept == null) text-gray-200 @else text-green-400 @endif flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                            <svg class="w-6 h-6 mr-1.5 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                                             <p><small>Товар принят</small><br />
                                                 <span>{{$track->client_accept}}</span></p>
                                         </div>
-
+                                        @endif
                                         @if($track->to_client && $track->client_accept == null && $track->city == null )
                                                 <div class="mt-4">
                                                     <form method="POST" action="{{ route('accept-product', ['track_code' => $track->track_code]) }}">
