@@ -164,6 +164,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 mr-6 mb-4 mt-2 ml-6">
+                <h4>Поиск клиента</h4>
                 <form method="POST" action="{{ route('client-search') }}">
                     @csrf
                     <x-text-input id="phone" class="block mt-1 w-full mb-2 border-2 border-sky-400" type="text" required="required" placeholder="Введите запрос" name="phone" value="{{ $search_phrase }}" required autofocus />
@@ -172,7 +173,50 @@
                     </button>
                 </form>
             </div>
+            {{--<div class="grid grid-cols-1 mr-6 mb-4 mt-2 ml-6">
+                <h4>Поиск трека</h4>
+                <form method="POST" action="{{ route('track-search') }}">
+                    @csrf
+                    <x-text-input id="track" class="block mt-1 w-full mb-2 border-2 border-sky-400" type="text" required="required" placeholder="Введите запрос" name="track_code" value="{{ $search_track }}" required />
+                    <button type="submit" class="items-center px-4 py-3 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700  focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" style="background-color: rgb(49 196 141)">
+                        {{ __('Поиск') }}
+                    </button>
+                </form>
+            </div>--}}
+
+
+
+{{--
             <div class="grid grid-cols-1 sm:grid-cols-3 ml-5 mr-5 gap-2">
+                @foreach($tracks as $track)
+                    <tr class="bg-white border-b  hover:bg-gray-50">
+                        <td class="px-6 py-4">
+                            {{ $track->track_code }}
+                        </td>
+                        <td class="px-6 py-4">
+                            @if(isset($track->user)) {{ $track->user->name }} @endif
+                        </td>
+                        <td class="px-6 py-4">
+                            @if(isset($track->user)) {{ $track->user->login }} @endif
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $track->status }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $track->city }}
+                        </td>
+
+                        <td class="px-6 py-4">
+                            @if(isset($track->user)) {{ $track->user->city }} @endif
+                        </td>
+                        <td class="px-6 py-4">
+                            @if(($track->reg_city == true)) <span style="color: #0a7900">Принят</span> @else <span style="color: #980202">Не принят</span> @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </div>--}}
+            <div class="grid grid-cols-1 sm:grid-cols-3 ml-5 mr-5 gap-2">
+
                 @foreach($users as $user)
                     <div class="w-full bg-white border border-indigo-200 rounded-lg shadow">
                         <ul class="grid grid-cols-1 p-3 text-xl font-medium text-white border-b border-gray-200 rounded-t-lg"
@@ -214,6 +258,7 @@
 																	$i = 1;
                                                                  @endphp
                                                                 Готово к выдаче: {{ count($user->trackLists->where('status', 'Готово к выдаче')) }}<br />
+                                                                Получено на складе: {{ $user->trackLists->where('status', 'Получено на складе в Алматы')->count() }}<br />
                                                                 @foreach($user->trackLists as $tracks)
                                                                     @php
                                                                         $text = '';
