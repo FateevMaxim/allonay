@@ -32,7 +32,7 @@ class DeliveryController extends Controller
             $accountingIn->status = false;
             $accountingIn->save();
         }
-        return redirect('dashboard')->with('message', 'Новая выдача добавлена');
+        return redirect('dashboard')->with('message', 'Новая выдача добалена! <a href="https://wa.me/77475264140?text=Здравствуйте, '.$request->weight. ' кг. '.$request->amount_kz.' тг. (Тариф 4.5$). При оплате на Каспий - +1% к этой сумме" target="_blank">Пнуть</a>');
     }
 
     public function deliveryOut ($id) {
