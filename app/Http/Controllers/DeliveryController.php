@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AccountingIn;
 use App\Models\AccountingOut;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
@@ -32,7 +33,10 @@ class DeliveryController extends Controller
             $accountingIn->status = false;
             $accountingIn->save();
         }
-        return redirect('dashboard')->with('message', 'Новая выдача добалена! <a href="https://wa.me/77475264140?text=Здравствуйте, '.$request->weight. ' кг. '.$request->amount_kz.' тг. (Тариф 4.5$). При оплате на Каспий - +1% к этой сумме" target="_blank">Пнуть</a>');
+
+        $userLogin = User::find($request->user_id);
+        return redirect('dashboard')->with('message', 'Новая выдача добалена! <a href="https://wa.me/'.$userLogin->login.'?text=Здравствуйте, '.$request->weight. ' кг. '.$request->amount_kz.' тг.
+(Тариф 4.5$). При оплате на Каспий - +1% к этой сумме. Выдача сегодня до 16:00 на рынке Жетысу" target="_blank">Пнуть</a>');
     }
 
     public function deliveryOut ($id) {
