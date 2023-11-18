@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AccountingIn;
 use App\Models\AccountingOut;
+use App\Models\Configuration;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -35,8 +36,11 @@ class DeliveryController extends Controller
         }
 
         $userLogin = User::find($request->user_id);
-        return redirect('dashboard')->with('message', 'Новая выдача добалена! <a href="https://wa.me/'.$userLogin->login.'?text=Здравствуйте, '.$request->weight. ' кг. '.$request->amount_kz.' тг.
-(Тариф 4.5$). При оплате на Каспий - +1% к этой сумме. Выдача сегодня до 16:00 на рынке Жетысу" target="_blank">Пнуть</a>');
+        $kick = Configuration::select('kick')->where('id', 1)->first();
+        return redirect('dashboard')->with('message', 'Новая выдача добалена!
+                                                              <a href="https://wa.me/'.$userLogin->login.'?text=Здравствуйте, '.$request->weight. ' кг. '.$request->amount_kz.' тг. '.$kick->kick.'" target="_blank" class="text-red-600">Пнуть Жетысу | </a>
+                                                              <a href="https://wa.me/'.$userLogin->login.'?text=Здравствуйте, '.$request->weight. ' кг. '.$request->amount_kz.' тг." target="_blank" class="text-blue-600">Пнуть</a>
+        ');
     }
 
     public function deliveryOut ($id) {
@@ -65,4 +69,13 @@ class DeliveryController extends Controller
         $kaspi = $totalAmount + $totalAmount * 0.01 ;
         return view('delivery')->with(compact('accountingOut', 'totalAmount', 'kaspi'));
     }
+    public function kick ()
+    {
+        $config = Configuration::find(1);
+        $config->kick = $_REQUEST['kick'];
+        $config->save();
+
+        return redirect()->route('dashboard')->with('message', 'Пинок изменён!');
+    }
+
 }

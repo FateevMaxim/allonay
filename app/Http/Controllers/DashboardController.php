@@ -51,7 +51,7 @@ class DashboardController extends Controller
             User::query()->where('login', '+'.$ph['login'])->update(['tgID' => $ph['tgID']]);
         }*/
         $user = Auth::user();
-        $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app', 'rate')->first();
+        $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app', 'rate', 'kick')->first();
         $qr = QrCodes::query()->select()->where('id', 1)->first();
         $count = 0;
         $messages = Message::all();
@@ -88,17 +88,10 @@ class DashboardController extends Controller
                 $count = TrackList::query()->whereDate('to_client', Carbon::today())->count();
                 return view('othercity')->with(compact('count', 'config', 'cities', 'qr'));
             } elseif ($user->type === 'admin' || $user->type === 'moderator') {
-                $currencies = array();
-
-                $currencies['USD'] = [
-                    'title' => 'USD',
-                    'buy' => $config->rate
-                ];
-
                 $search_phrase = '';
                 $accountingIns = [];
                 $users = User::query()->select('id', 'name', 'surname', 'type', 'login', 'city', 'is_active', 'block', 'password', 'created_at')->where('type', null)->where('is_active', false)->get();
-                return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config', 'currencies', 'accountingIns'));
+                return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config', 'accountingIns'));
             }
         }
 

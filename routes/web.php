@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/almatyout-product', [ProductController::class, 'almatyOut'])->name('almatyout-product');
     Route::post('/almatyout-product-all', [ProductController::class, 'almatyOutAll'])->name('almatyout-product-all');
     Route::post('/getinfo-product', [ProductController::class, 'getInfoProduct'])->name('getinfo-product');
+    Route::post('/gettracksinfo', [ProductController::class, 'getTracksInfo'])->name('gettracksinfo');
     Route::post('/client-product', [ProductController::class, 'addClient'])->name('client-product');
     Route::post('/accept-product', [ProductController::class, 'acceptProduct'])->name('accept-product');
     Route::post('/client-product-archive', [ProductController::class, 'archiveProduct'])->name('client-product-archive');
@@ -56,6 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/client-access', [ProfileController::class, 'accessClient'])->name('client-access');
     Route::post('/client-block', [ProfileController::class, 'blockClient'])->name('client-block');
     Route::post('/client-search', [ProfileController::class, 'searchClient'])->name('client-search');
+    Route::post('/track-search', [ProfileController::class, 'searchTrack'])->name('track-search');
 
     Route::post('/message-delete', [ProfileController::class, 'deleteMessage'])->name('message-delete');
     Route::post('/message-add', [ProfileController::class, 'addMessage'])->name('message-add');
@@ -72,6 +74,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('/rate', [DashboardController::class, 'rate'])->name('rate');
+    Route::post('/kick', [DeliveryController::class, 'kick'])->name('kick');
 
 
     Route::get('/accounting', [AccountingController::class, 'accounting'])->name('accounting');

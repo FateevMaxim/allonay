@@ -156,7 +156,6 @@ class ProductController extends Controller
 
     }
 
-
     public function addClient(Request $request)
     {
 

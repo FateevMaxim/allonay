@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\AccountingIn;
 use App\Models\City;
+use App\Models\ClientTrackList;
 use App\Models\Configuration;
 use App\Models\Message;
 use App\Models\User;
@@ -92,15 +93,17 @@ class ProfileController extends Controller
             ->where('login', 'LIKE', '%'.$request->phone.'%')->get();
         $messages = Message::all();
         $search_phrase = $request->phone;
-        $config = Configuration::query()->select('address', 'rate')->first();
-        $currencies = array();
-
-                $currencies['USD'] = [
-                    'title' => 'USD',
-                    'buy' => $config->rate
-                ];
+        $config = Configuration::query()->select('address', 'rate', 'kick')->first();
         $accountingIns = AccountingIn::query()->select('id', 'created_at')->where('status', false)->orderByDesc('created_at')->get();
-        return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config', 'currencies','accountingIns'));
+        return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config','accountingIns'));
+    }
+
+    public function searchTrack (Request $request)
+    {
+        $tracks = ClientTrackList::with(['user', 'trackList'])->where('track_code', 'LIKE', '%'.$request->track_code)->get();
+        $config = Configuration::query()->select('address', 'rate')->first();
+        $search_track = $request->track_code;
+        return view('admin-tracks')->with(compact('tracks', 'config', 'search_track'));
     }
 
     public function accessClient (Request $request)

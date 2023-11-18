@@ -45,21 +45,53 @@
                     </div>
                 </div>
             </div>
-            @if(Route::currentRouteName() != 'dashboard')
-                <div class="flex items-center justify-start mt-2 ml-6">
-                    <a href="{{ route('dashboard') }}">
-                        <x-classic-button class="mx-auto mb-4 w-full">
-                            {{ __('Назад') }}
-                        </x-classic-button>
-                    </a>
+            <div class="flex items-center justify-start mt-2 ml-6">
+                @if(Route::currentRouteName() != 'dashboard')
+
+                        <a href="{{ route('dashboard') }}">
+                            <x-classic-button class="mx-auto mb-4 w-full">
+                                {{ __('Назад') }}
+                            </x-classic-button>
+                        </a>
+                @endif
+                <button data-modal-target="defaultModalKick" data-modal-toggle="defaultModalKick" class="ml-4 mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Текст пинка
+                </button>
+            </div>
+
+            <div id="defaultModalKick" tabindex="999" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+                <div class="relative w-3/4 max-w-md md:h-auto">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow">
+                        <!-- Modal header -->
+                        <div class="justify-between bg-[#313131] text-center p-4 border-b rounded-t ">
+                            <h3 class="text-xl font-semibold text-white">
+                                Задать текст пинка
+                            </h3>
+                        </div>
+                        <form method="POST" action="{{ route('kick') }}">
+                            @csrf
+                            <!-- Modal body -->
+                            <div class="p-6 text-center space-y-6">
+                                <label for="kick">Текст пинка</label>
+                                <input type="text" name="kick" class="rounded-t-lg w-full px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" value="{{ $config->kick }}" />
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="grid grid-cols-2 items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
+                                <button data-modal-hide="defaultModalKick" type="submit" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">Сохранить</button>
+                                <button data-modal-hide="defaultModalKick" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">Отмена</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            @endif
+                </div>
             @if(session()->has('message'))
-                <div id="alert-3" class="flex p-4 mb-4 mr-6 ml-6 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                <div id="alert-3" class="flex p-4 mb-4 mr-6 ml-6 text-green-800 rounded-lg bg-green-50" role="alert">
                     <div class="ml-3 text-sm font-medium">
                         {!! session()->get('message') !!}
                     </div>
-                    <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-3" aria-label="Close">
+                    <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8" data-dismiss-target="#alert-3" aria-label="Close">
                         <span class="sr-only">Закрыть</span>
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
@@ -163,60 +195,29 @@
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-1 mr-6 mb-4 mt-2 ml-6">
-                <h4>Поиск клиента</h4>
-                <form method="POST" action="{{ route('client-search') }}">
-                    @csrf
-                    <x-text-input id="phone" class="block mt-1 w-full mb-2 border-2 border-sky-400" type="text" required="required" placeholder="Введите запрос" name="phone" value="{{ $search_phrase }}" required autofocus />
-                    <button type="submit" class="items-center px-4 py-3 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700  focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" style="background-color: rgb(49 196 141)">
-                        {{ __('Поиск') }}
-                    </button>
-                </form>
+            <div class="grid grid-cols-2 mr-6 mb-4 mt-2 ml-6 gap-4">
+                <div>
+                    <form method="POST" action="{{ route('track-search') }}">
+                        @csrf
+                        <x-text-input id="track" class="block mt-1 w-full mb-2 border-2 border-sky-400" type="text" required="required" placeholder="Трек" name="track_code" value="" required />
+                        <button type="submit" class="items-center px-4 py-3 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 bg-blue-500 hover:bg-blue-700">
+                            {{ __('Найти трек') }}
+                        </button>
+                    </form>
+                </div>
+                <div>
+                    <form method="POST" action="{{ route('client-search') }}">
+                        @csrf
+                        <x-text-input id="phone" class="block mt-1 w-full mb-2 border-2 border-sky-400" type="text" required="required" placeholder="Телефон" name="phone" value="{{ $search_phrase }}" required autofocus />
+                        <button type="submit" class="items-center px-4 py-3 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest transition ease-in-out duration-150 hover:bg-[#159668] bg-[#31C48D]">
+                            {{ __('Найти клиента') }}
+                        </button>
+                    </form>
+                </div>
+
             </div>
-            {{--<div class="grid grid-cols-1 mr-6 mb-4 mt-2 ml-6">
-                <h4>Поиск трека</h4>
-                <form method="POST" action="{{ route('track-search') }}">
-                    @csrf
-                    <x-text-input id="track" class="block mt-1 w-full mb-2 border-2 border-sky-400" type="text" required="required" placeholder="Введите запрос" name="track_code" value="{{ $search_track }}" required />
-                    <button type="submit" class="items-center px-4 py-3 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700  focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" style="background-color: rgb(49 196 141)">
-                        {{ __('Поиск') }}
-                    </button>
-                </form>
-            </div>--}}
 
-
-
-{{--
-            <div class="grid grid-cols-1 sm:grid-cols-3 ml-5 mr-5 gap-2">
-                @foreach($tracks as $track)
-                    <tr class="bg-white border-b  hover:bg-gray-50">
-                        <td class="px-6 py-4">
-                            {{ $track->track_code }}
-                        </td>
-                        <td class="px-6 py-4">
-                            @if(isset($track->user)) {{ $track->user->name }} @endif
-                        </td>
-                        <td class="px-6 py-4">
-                            @if(isset($track->user)) {{ $track->user->login }} @endif
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $track->status }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $track->city }}
-                        </td>
-
-                        <td class="px-6 py-4">
-                            @if(isset($track->user)) {{ $track->user->city }} @endif
-                        </td>
-                        <td class="px-6 py-4">
-                            @if(($track->reg_city == true)) <span style="color: #0a7900">Принят</span> @else <span style="color: #980202">Не принят</span> @endif
-                        </td>
-                    </tr>
-                @endforeach
-            </div>--}}
-            <div class="grid grid-cols-1 sm:grid-cols-3 ml-5 mr-5 gap-2">
-
+            <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  ml-2 mr-2 gap-2">
                 @foreach($users as $user)
                     <div class="w-full bg-white border border-indigo-200 rounded-lg shadow">
                         <ul class="grid grid-cols-1 p-3 text-xl font-medium text-white border-b border-gray-200 rounded-t-lg"
@@ -477,20 +478,20 @@ ease-in-out duration-150 w-full">
 </x-app-layout>
 <script type="text/javascript">
     /* прикрепить событие submit к форме */
-    $("#rate").val({{$currencies['USD']['buy']}})
+    $("#rate").val({{$config->rate}})
 
 
     $(document).ready(function() {
 
         weight = $("#weight").val();
-        $("#tengeSum").val(((weight * 4.5) * {{$currencies['USD']['buy']}}).toFixed())
-        $("#tengeSumPer").val(((((weight * 4.5) * {{$currencies['USD']['buy']}})) + ((((weight * 4.5) * {{$currencies['USD']['buy']}})))/100).toFixed())
+        $("#tengeSum").val(((weight * 4.5) * {{$config->rate}}).toFixed())
+        $("#tengeSumPer").val(((((weight * 4.5) * {{$config->rate}})) + ((((weight * 4.5) * {{$config->rate}})))/100).toFixed())
     });
 
     $("#weight").keyup(function(event) {
 
         weight = $("#weight").val();
-            $("#tengeSum").val(((weight * 4.5) * {{$currencies['USD']['buy']}}).toFixed())
-            $("#tengeSumPer").val(((((weight * 4.5) * {{$currencies['USD']['buy']}})) + ((((weight * 4.5) * {{$currencies['USD']['buy']}})))/100).toFixed())
+            $("#tengeSum").val(((weight * 4.5) * {{$config->rate}}).toFixed())
+            $("#tengeSumPer").val(((((weight * 4.5) * {{$config->rate}})) + ((((weight * 4.5) * {{$config->rate}})))/100).toFixed())
     });
 </script>
