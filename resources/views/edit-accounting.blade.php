@@ -75,6 +75,7 @@
                                             <th scope="col" class="px-6 py-4">Тенге</th>
                                             <th scope="col" class="px-6 py-4">Вес</th>
                                             <th scope="col" class="px-6 py-4">Заметка</th>
+                                            <th scope="col" class="px-6 py-4">Статус</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -130,47 +131,25 @@
                                                             placeholder="{{ $accountingIn->note }}" />
                                                     </div>
                                                     </td>
+                                                <td class="whitespace-nowrap px-6 py-4">
+                                                    <div class="relative mb-3" data-te-input-wrapper-init>
+                                                        <input
+                                                            type="checkbox"
+                                                            name="status"
+                                                            value="true"
+                                                            {{ $accountingIn->status ? 'checked' : '' }}/>
+                                                    </div>
+                                                    </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="grid grid-cols-2 items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
                                         <button type="submit" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">Сохранить</button>
-                                        <a href="/accounting"><button data-modal-hide="defaultModalRate" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">Отмена</button></a>
+                                        <a href="/accounting"><button type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">Отмена</button></a>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="defaultModalRate" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
-                <div class="relative w-3/4 max-w-md md:h-auto">
-                    <!-- Modal content -->
-                    <div class="relative bg-white rounded-lg shadow">
-                        <!-- Modal header -->
-                        <div class="justify-between bg-[#313131] text-center p-4 border-b rounded-t ">
-                            <h3 class="text-xl font-semibold text-white">
-                                Добавить новый приход
-                            </h3>
-                        </div>
-                        <form method="POST" action="{{ route('add-accounting-in') }}">
-                            @csrf
-                            <div class="p-6 text-center space-y-6">
-                                <label for="amount_usd">USD</label>
-                                <input type="text" name="amount_usd" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                <label for="weight">Вес</label>
-                                <input type="text" name="weight" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                <label for="note">Заметка</label>
-                                <input type="text" name="note" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                            </div>
-
-                            <!-- Modal footer -->
-                            <div class="grid grid-cols-2 items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
-                                <button data-modal-hide="defaultModalRate" type="submit" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">Сохранить</button>
-                                <button data-modal-hide="defaultModalRate" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">Отмена</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

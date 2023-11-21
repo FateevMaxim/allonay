@@ -40,6 +40,7 @@ class AccountingController extends Controller
         $accountingIn->amount_kz = $amount_kz;
         $accountingIn->weight = $request["weight"];
         $accountingIn->note = $request["note"];
+        $accountingIn->status = (bool)$request["status"];
         $accountingIn->save();
         return redirect('accounting')->with('message', 'Данные о приходе обновлены');
 
