@@ -69,7 +69,7 @@
                                     <tr>
                                         <th scope="col" class="px-6 py-4">#</th>
                                         <th scope="col" class="px-6 py-4">Клиент</th>
-                                        <th scope="col" class="px-6 py-4">Тенге ({{ number_format($totalAmount, 0, '.', ' ') }}) @if(isset($kaspi)) Kaspi - {{ number_format($kaspi, 0, '.', ' ') }} @endif</th>
+                                        <th scope="col" class="px-6 py-4">Тенге ({{ number_format($totalAmount, 0, '.', ' ') }}) @if(isset($kaspi)) Наличка - {{ number_format($kaspi, 0, '.', ' ') }} @endif</th>
                                         <th scope="col" class="px-6 py-4">Вес</th>
                                         <th scope="col" class="px-6 py-4">Дата</th>
                                         <th scope="col" class="px-6 py-4">Заметка</th>

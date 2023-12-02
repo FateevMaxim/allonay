@@ -66,7 +66,7 @@ class DeliveryController extends Controller
         $totalAmount = AccountingOut::where('user_id', $id)
             ->where('status', false) // Фильтрация по статусу true
             ->sum('amount_kz');
-        $kaspi = $totalAmount + $totalAmount * 0.01 ;
+        $kaspi = $totalAmount - $totalAmount * 0.01 ;
         return view('delivery')->with(compact('accountingOut', 'totalAmount', 'kaspi'));
     }
     public function kick ()
