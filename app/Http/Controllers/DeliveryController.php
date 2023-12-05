@@ -38,8 +38,8 @@ class DeliveryController extends Controller
         $userLogin = User::find($request->user_id);
         $kick = Configuration::select('kick')->where('id', 1)->first();
         return redirect('dashboard')->with('message', 'Новая выдача добалена!
-                                                              <a href="https://wa.me/'.$userLogin->login.'?text=Здравствуйте, '.$request->weight. ' кг. '.$request->amount_kz.' тг. При оплате наличкой нужно отнять 1% от этой суммы.  '.$kick->kick.'" target="_blank" class="text-red-600">Пнуть Жетысу | </a>
-                                                              <a href="https://wa.me/'.$userLogin->login.'?text=Здравствуйте, '.$request->weight. ' кг. '.$request->amount_kz.' тг. При оплате наличкой нужно отнять 1% от этой суммы. " target="_blank" class="text-blue-600">Пнуть</a>
+                                                              <a href="https://api.whatsapp.com/send/?phone='.$userLogin->login.'&text=Здравствуйте, '.$request->weight. ' кг. '.$request->amount_kz.' тг. При оплате наличкой нужно отнять 1% от этой суммы.  '.$kick->kick.'" target="_blank" class="text-red-600">Пнуть Жетысу | </a>
+                                                              <a href="https://api.whatsapp.com/send/?phone='.$userLogin->login.'&text=Здравствуйте, '.$request->weight. ' кг. '.$request->amount_kz.' тг. При оплате наличкой нужно отнять 1% от этой суммы. " target="_blank" class="text-blue-600">Пнуть</a>
         ');
     }
 
