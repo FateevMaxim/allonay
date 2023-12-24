@@ -267,6 +267,7 @@
                                                                         if($tracks->status === 'Готово к выдаче'){ $text = 'text-green-700'; $date = \Illuminate\Support\Carbon::parse($tracks->to_client)->format('Y-m-d'); }
                                                                         if($tracks->status === 'Получено на складе в Алматы'){ $text = 'text-indigo-700'; $date = \Illuminate\Support\Carbon::parse($tracks->to_almaty)->format('Y-m-d'); }
                                                                         if($tracks->status === 'Получено в Китае'){ $date = \Illuminate\Support\Carbon::parse($tracks->to_china)->format('Y-m-d'); }
+                                                                        if($tracks->status === 'Товар принят'){ $date = \Illuminate\Support\Carbon::parse($tracks->client_accept)->format('Y-m-d'); }
 
 																	    echo '<span class="'.$text.'">'.$i. '. '. $tracks->track_code. ' - '. $tracks->status. ' от '.$date.'</span><br />';
 
