@@ -236,28 +236,31 @@
                                     <div class="flex flex-row-reverse col-span-1">
                                         <li class="mr-4">
 
-                                            <button data-modal-target="defaultModalTracks{{$user->id}}" data-modal-toggle="defaultModalTracks{{$user->id}}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                                                </svg>
-                                            </button>
 
-                                            <!-- Main modal -->
-                                            <div id="defaultModalTracks{{$user->id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
-                                                <div class="relative w-full md:w-1/2 max-w md:max-h-full">
-                                                    <!-- Modal content -->
-                                                    <div class="relative bg-white rounded-lg shadow">
-                                                        <!-- Modal header -->
-                                                        <div class="justify-between bg-[#313131] text-center p-4 border-b rounded-t ">
-                                                            <h3 class="text-xl font-semibold text-white">
-                                                                {{$user->login}}
-                                                            </h3>
-                                                        </div>
-                                                        <div class="text-sm font-light ml-2 text-gray-500">
+
+                                            @if(count($user->trackLists) != 0)
+                                                <button data-modal-target="defaultModalTracks{{$user->id}}" data-modal-toggle="defaultModalTracks{{$user->id}}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                                                    </svg>
+                                                </button>
+
+                                                <!-- Main modal -->
+                                                <div id="defaultModalTracks{{$user->id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+                                                    <div class="relative w-full md:w-1/2 max-w md:max-h-full">
+                                                        <!-- Modal content -->
+                                                        <div class="relative bg-white rounded-lg shadow">
+                                                            <!-- Modal header -->
+                                                            <div class="justify-between bg-[#313131] text-center p-4 border-b rounded-t ">
+                                                                <h3 class="text-xl font-semibold text-white">
+                                                                    {{$user->login}}
+                                                                </h3>
+                                                            </div>
+                                                            <div class="text-sm font-light ml-2 text-gray-500">
                                                                 @php
                                                                     echo 'Всего треков: '. count($user->trackLists) .'<br />';
 																	$i = 1;
-                                                                 @endphp
+                                                                @endphp
                                                                 Готово к выдаче: {{ count($user->trackLists->where('status', 'Готово к выдаче')) }}<br />
                                                                 Получено на складе: {{ $user->trackLists->where('status', 'Получено на складе в Алматы')->count() }}<br />
                                                                 @foreach($user->trackLists as $tracks)
@@ -275,10 +278,13 @@
 
                                                                 @endforeach
 
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endif
+
+
                                         </li>
                                         <li class="mr-4">
 
