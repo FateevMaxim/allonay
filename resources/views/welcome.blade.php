@@ -136,91 +136,20 @@
 
                                 </div>
                                 <div>
-                                    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                                    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                                         <button type="button" class="gray bg-primary mt-16">Войти</button>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="{{ route('register') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                                        <button type="button" class="gray bg-primary mt-6">Зарегистрироваться</button>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                    <div class="relative overflow-x-auto mt-2 shadow-md sm:rounded-lg">
-                        <table class="w-full text-sm text-left text-gray-500">
-                            <thead class="text-xs text-gray-700 uppercase">
-                            <tr class="border">
-                                <th scope="col" class="px-6 py-3">
-                                    Валюта
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Покупка
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Тариф 4.5$/кг
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                        {{$currencies['USD']['title']}}
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        {{round($currencies['USD']['buy'],1)}} тг.
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{round($currencies['USD']['buy'] * 4.5,1)}} тг./кг.
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2">
-                        <table class="w-full text-sm text-center text-gray-500">
-                            <thead class="text-xs text-gray-700 uppercase">
-                            <tr class="border">
-                                <th scope="col" class="px-6 py-3">
-                                    Вес, кг
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Сумма $
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Сумма тг.
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Сумма +1%
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="border">
-                                <th scope="row" class="px-2 py-2 font-medium text-gray-900 whitespace-nowrap">
-                                    <input type="text" id="weight" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                </th>
-                                <td class="px-2 py-2">
-                                    <input type="text" disabled id="dollarSum" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                </td>
-                                <td class="px-2 py-2">
-                                    <input type="text" disabled id="tengeSum" class="rounded-t-lg w-3/4 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                </td>
-                                <td class="px-2 py-2">
-                                    <input type="text" disabled id="tengeSumPer" class="rounded-t-lg w-3/4 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                </td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-            /* прикрепить событие submit к форме */
-            $("#weight").keyup(function(event) {
 
-                weight = $("#weight").val();
-                    $("#dollarSum").val((weight * 4.5).toFixed(1))
-                    $("#tengeSum").val(((weight * 4.5) * {{$currencies['USD']['buy']}}).toFixed(1))
-                    $("#tengeSumPer").val(((((weight * 4.5) * {{$currencies['USD']['buy']}})) + ((((weight * 4.5) * {{$currencies['USD']['buy']}})))/100).toFixed(1))
-            });
-        </script>
     </body>
 </html>
