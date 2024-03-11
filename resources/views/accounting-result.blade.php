@@ -129,7 +129,6 @@
                             </tr>
                     </tbody>
                 </table>
-                <div><i class="ml-4">Инвестировали своих по состоянию на 02.10.2023 - 158 долларов (пополам)</i></div>
             </div>
 
             <h4 class="mb-1 mt-6 text-2xl text-center font-medium leading-tight text-primary">
