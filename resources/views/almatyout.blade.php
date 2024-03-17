@@ -44,7 +44,7 @@
 
                                     <p><b>Трек код:</b> <span id="trackcode"></span></p>
 
-                                    <h4 class="mt-4">Дата регистрации в Китае</h4>
+                                    <h4 class="mt-4">Дата отправки в Казахстан</h4>
                                     <p><small id="to_china"></small></p>
                                     <h4>Дата регистрации в Алматы</h4>
                                     <p><small id="to_almaty"></small></p>
