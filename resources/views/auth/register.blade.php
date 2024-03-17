@@ -19,12 +19,6 @@
             <x-text-input id="name" class="block mt-1 w-full border-2" type="text" name="name" :value="old('name')" placeholder="Imya" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
-        <!-- Surname -->
-        <div>
-            <x-input-label for="surname" :value="__('Фамилия')" />
-            <x-text-input id="surname" class="block mt-1 w-full border-2" type="text" name="surname" :value="old('surname')" placeholder="Familiya" required autofocus autocomplete="surname" />
-            <x-input-error :messages="$errors->get('surname')" class="mt-2" />
-        </div>
 
         <!-- Phone -->
         <div class="mt-4">

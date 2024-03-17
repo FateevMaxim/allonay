@@ -104,7 +104,6 @@
                                 /* отправляем данные методом POST */
                                 $.post( url, { track_code: track_code } )
                                  .done(function( data ) {
-                                     $("#surname").text(data[1].surname);
                                      $("#name").text(data[1].name);
                                      $("#login").text(data[1].login);
                                      $("#city").text(data[1].city);

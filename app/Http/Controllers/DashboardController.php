@@ -90,7 +90,7 @@ class DashboardController extends Controller
             } elseif ($user->type === 'admin' || $user->type === 'moderator') {
                 $search_phrase = '';
                 $accountingIns = [];
-                $users = User::query()->select('id', 'name', 'surname', 'type', 'login', 'city', 'is_active', 'block', 'password', 'created_at')->where('type', null)->where('is_active', false)->get();
+                $users = User::query()->select('id', 'name', 'type', 'login', 'city', 'is_active', 'block', 'password', 'created_at')->where('type', null)->where('is_active', false)->get();
                 return view('admin')->with(compact('users', 'messages', 'search_phrase', 'config', 'accountingIns'));
             }
         }

@@ -14,11 +14,6 @@
             <x-text-input id="name" name="name" type="text" disabled class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
-        <div>
-            <x-input-label for="surname" :value="__('Фамилия')" />
-            <x-text-input id="surname" name="name" type="text" disabled class="mt-1 block w-full" :value="old('surname', $user->surname)" required autofocus autocomplete="surname" />
-            <x-input-error class="mt-2" :messages="$errors->get('surname')" />
-        </div>
 
         <div>
             <x-input-label for="login" :value="__('Номер телефона')" />

@@ -356,7 +356,7 @@
                             </div>
                         </ul>
                         <div id="defaultTabContent" class="p-4">
-                            <h2 class="mb-2 text-lg font-semibold text-gray-900">{{$user->surname}}&nbsp;{{$user->name}}</h2>
+                            <h2 class="mb-2 text-lg font-semibold text-gray-900">{{$user->name}}</h2>
                             <ul class="max-w-md space-y-1 text-gray-500 list-inside">
                                 <li class="flex items-center">
                                     <p><small>Город</small><br />
