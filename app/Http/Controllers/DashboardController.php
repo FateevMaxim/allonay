@@ -52,7 +52,7 @@ class DashboardController extends Controller
         }*/
         $user = Auth::user();
         $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app', 'rate', 'kick')->first();
-        $config->address = str_replace('ваш номер', Auth::user()->login, $config->address);
+        //$config->address = str_replace('ваш номер', Auth::user()->login, $config->address);
         $qr = QrCodes::query()->select()->where('id', 1)->first();
         $count = 0;
         $messages = Message::all();
