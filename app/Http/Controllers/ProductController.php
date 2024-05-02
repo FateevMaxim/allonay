@@ -100,6 +100,12 @@ class ProductController extends Controller
 
     public function almatyOut(Request $request)
     {
+        if($request["city"] != 'Выберите город' && isset($request["city"])){
+            $city = $request["city"];
+        }else{
+            $city = null;
+        }
+
         $status = "Готово к выдаче";
         if ($request["send"] === 'true'){
             $status = "Отправлено в Ваш город";
@@ -113,6 +119,7 @@ class ProductController extends Controller
                 $client_field => date(now()),
                 'status' => $status,
                 'reg_client' => 1,
+                'city' => $city,
                 'updated_at' => date(now()),
             ];
             /*$user = ClientTrackList::query()->select('user_id')->where('track_code', $ar)->first();
@@ -121,7 +128,7 @@ class ProductController extends Controller
             }*/
         }
 
-        TrackList::upsert($wordsFromFile, ['track_code', $client_field, 'status', 'reg_client', 'updated_at']);
+        TrackList::upsert($wordsFromFile, ['track_code', $client_field, 'status', 'reg_client', 'city', 'updated_at']);
         return response('success');
     }
     public function almatyOutAll()
