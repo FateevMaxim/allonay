@@ -52,9 +52,9 @@ class DashboardController extends Controller
         }*/
         $user = Auth::user();
         $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app', 'rate', 'kick')->first();
-        //$login = mb_convert_encoding(Auth::user()->login, 'UTF-8', 'ASCII');
+        $login = intval(Auth::user()->login);
+        $login2 = mb_convert_encoding($login, 'UTF-8', 'ASCII');
 
-        //dd(mb_detect_encoding($login));
         //$config->address = str_replace('ваш номер', $login, $config->address);
         $qr = QrCodes::query()->select()->where('id', 1)->first();
         $count = 0;
@@ -107,7 +107,7 @@ class DashboardController extends Controller
     {
             $tracks = ClientTrackList::query()
                 ->leftJoin('track_lists', 'client_track_lists.track_code', '=', 'track_lists.track_code')
-                ->select( 'client_track_lists.track_code', 'client_track_lists.detail', 'client_track_lists.created_at',
+                ->select( 'client_track_lists.track_code', 'client_track_lists.detail', 'client_track_lists.created_at', 'client_track_lists.id',
                     'track_lists.to_china','track_lists.to_almaty','track_lists.to_client','track_lists.to_city','track_lists.city','track_lists.to_client_city','track_lists.client_accept','track_lists.status')
                 ->where('client_track_lists.user_id', Auth::user()->id)
                 ->where('client_track_lists.status', '=', 'archive')
