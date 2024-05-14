@@ -8,8 +8,8 @@
                     <p class="font-normal text-gray-700">Добро пожаловать в систему отслеживания посылок из Китая</p>
                     @if(isset($config->whats_app))
                         <p class="mb-3 font-normal text-gray-700">Чтобы получить доступ к сайту переходите по ссылке</p>
-
-                        <a href="https://api.whatsapp.com/send?phone=@if(\Illuminate\Support\Facades\Auth::user()->city == "Караой") 77075235945 @else {{$config->whats_app}} @endif&text=Здравствуйте! Активируйте мой аккаунт" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        @if(\Illuminate\Support\Facades\Auth::user()->city == "Караой")
+                        <a href="https://api.whatsapp.com/send?phone=77075235945&text=Здравствуйте! Активируйте мой аккаунт" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Перейти
                             <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd">
@@ -17,6 +17,16 @@
                                 </path>
                             </svg>
                         </a>
+                        @else
+                        <a href="https://api.whatsapp.com/send?phone={{$config->whats_app}}&text=Здравствуйте! Активируйте мой аккаунт" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Перейти
+                            <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd">
+
+                                </path>
+                            </svg>
+                        </a>
+                        @endif
                         <a href="/dashboard" class="ml-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Обновить &nbsp;
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 ml-2 -mr-1">
