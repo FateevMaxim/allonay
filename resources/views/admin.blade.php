@@ -244,7 +244,7 @@
 
                                             <!-- Main modal -->
                                             <div id="defaultModalTracks{{$user->id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
-                                                <div class="relative w-full md:w-1/2 max-w md:max-h-11/12 h-full md:h-auto">
+                                                <div class="relative w-full md:w-1/2 max-w md:max-h-11/12 h-full">
                                                     <!-- Modal content -->
                                                     <div class="relative bg-white rounded-lg shadow">
                                                         <!-- Modal header -->
