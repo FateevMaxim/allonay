@@ -487,14 +487,14 @@ ease-in-out duration-150 w-full">
     $(document).ready(function() {
 
         weight = $("#weight").val();
-        $("#tengeSum").val(((weight * 4.5) * {{$config->rate}}).toFixed())
-        $("#tengeSumPer").val(((((weight * 4.5) * {{$config->rate}})) + ((((weight * 4.5) * {{$config->rate}})))/100).toFixed())
+        $("#tengeSum").val(((weight * 4.3) * {{$config->rate}}).toFixed())
+        $("#tengeSumPer").val(((((weight * 4.3) * {{$config->rate}})) + ((((weight * 4.3) * {{$config->rate}})))/100).toFixed())
     });
 
     $("#weight").keyup(function(event) {
 
         weight = $("#weight").val();
-            $("#tengeSum").val(((weight * 4.5) * {{$config->rate}}).toFixed())
-            $("#tengeSumPer").val(((((weight * 4.5) * {{$config->rate}})) + ((((weight * 4.5) * {{$config->rate}})))/100).toFixed())
+            $("#tengeSum").val(((weight * 4.3) * {{$config->rate}}).toFixed())
+            $("#tengeSumPer").val(((((weight * 4.3) * {{$config->rate}})) + ((((weight * 4.3) * {{$config->rate}})))/100).toFixed())
     });
 </script>
