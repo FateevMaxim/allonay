@@ -38,7 +38,7 @@ class ReportController extends Controller
                 case 'Получено на складе в Алматы':
                     $dateColumn = 'to_almaty';
                     break;
-                case 'Получено в Китае':
+                case 'Отправлено в Казахстан':
                     $dateColumn = 'to_china';
                     break;
             }
