@@ -93,7 +93,7 @@
                                     </div>
                                     <!-- Modal body -->
                                     <div class="p-6 space-y-2">
-                                        {! @yield('agreement') !}
+                                        @yield('agreement')
                                     </div>
                                     <!-- Modal footer -->
                                     <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
