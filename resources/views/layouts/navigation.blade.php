@@ -72,13 +72,10 @@
                             <a href="https://t.me/onayall" target="_blank" class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">{{ __('Telegram') }}</a>
                         </div>
                     </div>
-                    @if(isset($config->agreement))
                     <hr class="h-px mt-2 bg-gray-200 border-0">
 
                     <div class="mt-4">
-                        <input type="checkbox" name="checkbox" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" required />
-                        <label for="checkbox" class="ml-2 text-sm text-gray-900">Принимаю условия <a data-modal-target="staticModal" data-modal-toggle="staticModal" class="font-medium cursor-pointer">Соглашения при регистрации</a></label>
-
+                        <a data-modal-target="staticModal" data-modal-toggle="staticModal" class="font-medium cursor-pointer">Соглашения при регистрации</a>
 
                         <!-- Main modal -->
                         <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
@@ -96,7 +93,7 @@
                                     </div>
                                     <!-- Modal body -->
                                     <div class="p-6 space-y-2">
-                                        {!! $config->agreement !!}
+                                        @yield('agreement')
                                     </div>
                                     <!-- Modal footer -->
                                     <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
@@ -106,7 +103,6 @@
                             </div>
                         </div>
                     </div>
-                    @endif
                     {{--<div class="p-2 mt-2 mb-4">
                         <div class="grid grid-cols-1 gap-4">
                             <a href="https://t.me/allonaykzBot?start" target="_blank" class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">{{ __('Telegram Bot') }}</a>
