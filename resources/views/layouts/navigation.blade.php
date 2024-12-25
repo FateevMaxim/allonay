@@ -165,7 +165,6 @@
                           this.closest('form').submit();" class="w-full justify-center inline-flex cursor-pointer px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">{{ __('Выйти') }}</a></form>
                     </div>
                 </div>
-                    <script src="{{ asset('/js/flowbite.js') }}"></script>
                 <script>
                     function copyText() {
                         /* Copy text into clipboard */
