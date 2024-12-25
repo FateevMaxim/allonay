@@ -51,7 +51,7 @@ class DashboardController extends Controller
             User::query()->where('login', '+'.$ph['login'])->update(['tgID' => $ph['tgID']]);
         }*/
         $user = Auth::user();
-        $config = Configuration::query()->select('address', 'title_text', 'address_two', 'whats_app', 'rate', 'kick')->first();
+        $config = Configuration::query()->select('address', 'agreement', 'title_text', 'address_two', 'whats_app', 'rate', 'kick')->first();
         $login = intval(Auth::user()->login);
         $login2 = mb_convert_encoding($login, 'UTF-8', 'ASCII');
 
