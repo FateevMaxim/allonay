@@ -132,7 +132,7 @@
                                 </div>
 
                                 <!-- Modal body -->
-                                <div class="relative overflow-y-auto p-4" style="all: unset">
+                                <div class="relative overflow-y-auto p-4">
                                    @stack('agreement')
                                 </div>
 
