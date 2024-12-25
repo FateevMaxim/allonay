@@ -79,12 +79,13 @@
                     <!-- Button trigger modal -->
                     <button
                         type="button"
-                        class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
+                        class="inline-block rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2"
                         data-twe-toggle="modal"
+                        style="background-color: hsl(220.82deg 79.51% 47.84%);"
                         data-twe-target="#exampleModalScrollable"
                         data-twe-ripple-init
                         data-twe-ripple-color="light">
-                        Launch demo modal dialog scrollable
+                        Соглашение при регистрации
                     </button>
 
                     <!-- Modal -->
@@ -106,7 +107,7 @@
                                     <h5
                                         class="text-xl font-medium leading-normal text-surface dark:text-white"
                                         id="exampleModalScrollableLabel">
-                                        Modal title
+                                        Соглашение
                                     </h5>
                                     <!-- Close button -->
                                     <button
@@ -132,16 +133,7 @@
 
                                 <!-- Modal body -->
                                 <div class="relative overflow-y-auto p-4">
-                                    <p>
-                                        This is some placeholder content to show the scrolling behavior
-                                        for modals. We use repeated line breaks to demonstrate how
-                                        content can exceed minimum inner height, thereby showing inner
-                                        scrolling. When content becomes longer than the predefined
-                                        max-height of modal, content will be cropped and scrollable
-                                        within the modal.
-                                    </p>
-                                    <div style="height:800px;"></div>
-                                    <p>This content should appear at the bottom after you scroll.</p>
+                                   @yield('agreement')
                                 </div>
 
                                 <!-- Modal footer -->
@@ -153,14 +145,7 @@
                                         data-twe-modal-dismiss
                                         data-twe-ripple-init
                                         data-twe-ripple-color="light">
-                                        Close
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="ms-1 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-                                        data-twe-ripple-init
-                                        data-twe-ripple-color="light">
-                                        Save changes
+                                        Закрыть
                                     </button>
                                 </div>
                             </div>
