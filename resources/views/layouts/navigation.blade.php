@@ -75,7 +75,7 @@
                     <hr class="h-px mt-2 bg-gray-200 border-0">
 
                     <div class="mt-4">
-                        <a data-modal-target="staticModal" data-modal-toggle="staticModal" class="font-medium cursor-pointer">Соглашения при регистрации</a>
+                        <a data-modal-target="staticModal" data-modal-toggle="staticModal" class="font-medium cursor-pointer">Соглашение при регистрации</a>
 
                         <!-- Main modal -->
                         <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
