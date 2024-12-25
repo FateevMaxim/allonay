@@ -221,7 +221,6 @@
                         </div>
                     @endforeach
                 </div>
-                <script src="{{ asset('/js/flowbite.js') }}"></script>
                 <script type="text/javascript">
                     document.getElementById('toast-success').style.display = 'none';
 
