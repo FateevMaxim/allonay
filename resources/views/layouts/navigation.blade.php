@@ -79,7 +79,7 @@
                     <!-- Button trigger modal -->
                     <button
                         type="button"
-                        class="inline-block rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2"
+                        class="inline-block rounded px-6 pb-2 pt-2.5 mt-4 ml-4 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2"
                         data-twe-toggle="modal"
                         style="background-color: hsl(220.82deg 79.51% 47.84%);"
                         data-twe-target="#exampleModalScrollable"
@@ -133,7 +133,7 @@
 
                                 <!-- Modal body -->
                                 <div class="relative overflow-y-auto p-4">
-                                   @yield('agreement')
+                                   @yield('address')
                                 </div>
 
                                 <!-- Modal footer -->
