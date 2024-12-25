@@ -133,7 +133,7 @@
 
                                 <!-- Modal body -->
                                 <div class="relative overflow-y-auto p-4">
-                                   @yield('address')
+                                   @stack('agreement')
                                 </div>
 
                                 <!-- Modal footer -->

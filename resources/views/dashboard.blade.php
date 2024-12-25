@@ -1,7 +1,7 @@
 @if(isset($config->address)) @section( 'chinaaddress', $config->address ) @endif
 @if(isset($config->title_text)) @section( 'title_text', $config->title_text ) @endif
 @if(isset($config->address_two)) @section( 'address_two', $config->address_two ) @endif
-@if(isset($config->address)) @section('agreement'){!! $config->address !!}@endsection @endif
+@if(isset($config->agreement)) @push('agreement'){!! $config->agreement !!}@endpush @endif
 
 <x-app-layout>
         <div class="py-6">
