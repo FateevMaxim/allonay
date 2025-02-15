@@ -15,7 +15,8 @@ class AccountingOut extends Model
         'weight',
         'amount_kz',
         'note',
-        'status'
+        'status',
+        'type'
     ];
 
     public function user()

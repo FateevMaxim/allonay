@@ -86,7 +86,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/delivery/{id}', [DeliveryController::class, 'delivery'])->name('delivery');
     Route::post('/add-delivery', [DeliveryController::class, 'addDelivery'])->name('add-delivery');
-    Route::get('/delivery-out/{id}', [DeliveryController::class, 'deliveryOut'])->name('delivery-out');
+    Route::get('/delivery-out/{id}/{type}', [DeliveryController::class, 'deliveryOut'])->name('delivery-out');
     Route::get('/delivery-out-users/{id}', [DeliveryController::class, 'deliveryOutUsers'])->name('delivery-out-users');
 });
 

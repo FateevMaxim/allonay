@@ -43,9 +43,10 @@ class DeliveryController extends Controller
         ');
     }
 
-    public function deliveryOut ($id) {
+    public function deliveryOut ($id, $type) {
         $accountingOut = AccountingOut::find($id);
         $accountingOut->status = true;
+        $accountingOut->type = $type;
         $accountingOut->save();
 
         $accountingInIsDone = AccountingOut::where('accounting_ins_id', $accountingOut->accounting_ins_id)->where('status', false)->first();
