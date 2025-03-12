@@ -28,7 +28,7 @@
                                         <option value="Выдано клиенту">Выдано клиенту</option>
                                         <option value="Товар принят">Товар принят</option>
                                         <option value="Получено на складе в Алматы">Получено на складе в Алматы</option>
-                                        <option value="Получено на складе в Китае">Получено на складе в Китае</option>
+                                        <option value="Дата отправки в КЗ">Дата отправки в КЗ</option>
                                 </select>
                             </div>
                             <div class="col-span-2">

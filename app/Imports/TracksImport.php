@@ -35,7 +35,7 @@ class TracksImport implements ToModel, SkipsOnError
             return new TrackList([
                 'track_code' => $row[1],
                 'to_china' => $this->date,
-                'status' => 'Получено на складе в Китае',
+                'status' => 'Дата отправки в КЗ',
                 'reg_china' => 1,
                 'created_at' => date(now()),
             ]);
