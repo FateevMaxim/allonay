@@ -16,7 +16,8 @@ class AccountingOut extends Model
         'amount_kz',
         'note',
         'status',
-        'type'
+        'type',
+        'is_tracks_added'
     ];
 
     public function user()

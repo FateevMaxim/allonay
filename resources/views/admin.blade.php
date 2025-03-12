@@ -436,7 +436,7 @@
                                                 <form method="POST" action="{{ route('add-delivery') }}">
                                                     @csrf
                                                     <div class="mb-4">
-                                                        <select name="accounting_ins_id">
+                                                        <select name="accounting_ins_id" class="w-9/12 border-gray-300 rounded-lg">
                                                             @foreach($accountingIns as $ai)
                                                                 <option value="{{ $ai->id }}">{{ $ai->created_at }}</option>
                                                             @endforeach
@@ -444,12 +444,26 @@
                                                     </div>
 
                                                     <input type="hidden" name="user_id" value="{{$user->id}}">
-                                                   <label for="weight">Вес</label>
-                                                    <input type="text" name="weight" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                                    <label for="amount_kz">Тенге</label>
-                                                    <input type="text" name="amount_kz" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                                    <label for="note">Заметка</label>
-                                                    <input type="text" name="note" class="rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+
+                                                    <div class="mb-4">
+                                                        <label for="weight" class="block text-sm font-medium text-gray-700">Вес</label>
+                                                        <input type="text" name="weight" class="w-9/12 rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" />
+                                                    </div>
+
+                                                    <div class="mb-4">
+                                                        <label for="amount_kz" class="block text-sm font-medium text-gray-700">Тенге</label>
+                                                        <input type="text" name="amount_kz" class="w-9/12 rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" />
+                                                    </div>
+
+                                                    <div class="mb-4">
+                                                        <label for="note" class="block text-sm font-medium text-gray-700">Заметка</label>
+                                                        <input type="text" name="note" class="w-9/12 rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                                    </div>
+
+                                                    <div class="mb-4 items-center">
+                                                        <input type="checkbox" name="is_tracks_added" id="is_tracks_added" value="true" class="mr-2 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked />
+                                                        <label for="is_tracks_added" class="text-sm font-medium text-gray-700">Все треки добавлены</label>
+                                                    </div>
 
                                                     <!-- Modal footer -->
                                                     <div class="grid grid-cols-2 items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
@@ -457,6 +471,7 @@
                                                         <button data-modal-hide="new-delivery{{$user->id}}" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">Отмена</button>
                                                     </div>
                                                 </form>
+
                                             </div>
                                         </div>
                                     </div>
