@@ -27,7 +27,7 @@ class DeliveryController extends Controller
         $accountingOut->user_id = $request->user_id;
         $accountingOut->weight = $request->weight;
         $accountingOut->note = $request->note;
-        $accountingOut->is_tracks_added = $request->is_tracks_added ?? false;
+        $accountingOut->is_tracks_added = $request->is_tracks_added === null ? false : true;
         $accountingOut->save();
         $accountingInIsDone = AccountingOut::where('accounting_ins_id', $request->accounting_ins_id)->where('status', false)->first();
         if($accountingInIsDone){
