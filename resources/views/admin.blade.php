@@ -452,7 +452,13 @@
 
                                                     <div class="mb-4">
                                                         <label for="amount_kz" class="block text-sm font-medium text-gray-700">Тенге</label>
-                                                        <input type="text" name="amount_kz" class="w-9/12 rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" />
+                                                        <input type="text" name="amount_kz" id="amount_kz" class="w-9/12 rounded-t-lg w-16 px-1.5 pb-1.5 pt-2 text-sm text-gray-900 bg-gray-50 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" />
+                                                    </div>
+                                                    <!-- Секция с кнопками-чекбоксами -->
+                                                    <div class="mb-4 items-center gap-2">
+                                                        <button type="button" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300" onclick="updateAmount(30)">+30</button>
+                                                        <button type="button" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300" onclick="updateAmount(50)">+50</button>
+                                                        <button type="button" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300" onclick="updateAmount(100)">+100</button>
                                                     </div>
 
                                                     <div class="mb-4">
@@ -494,6 +500,16 @@ ease-in-out duration-150 w-full">
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    function updateAmount(value) {
+        // Получаем значение текущего input
+        const amountField = document.getElementById('amount_kz');
+        const currentValue = parseFloat(amountField.value) || 0;
+        // Увеличиваем значение
+        amountField.value = currentValue + value;
+    }
+</script>
 <script type="text/javascript">
     /* прикрепить событие submit к форме */
     $("#rate").val({{$config->rate}})
