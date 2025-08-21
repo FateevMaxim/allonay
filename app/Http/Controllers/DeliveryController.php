@@ -7,6 +7,7 @@ use App\Models\AccountingOut;
 use App\Models\Configuration;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DeliveryController extends Controller
 {
@@ -28,6 +29,7 @@ class DeliveryController extends Controller
         $accountingOut->weight = $request->weight;
         $accountingOut->note = $request->note;
         $accountingOut->is_tracks_added = $request->is_tracks_added === null ? false : true;
+        $accountingOut->admin_id = Auth::user()->id;
         $accountingOut->save();
         $accountingInIsDone = AccountingOut::where('accounting_ins_id', $request->accounting_ins_id)->where('status', false)->first();
         if($accountingInIsDone){

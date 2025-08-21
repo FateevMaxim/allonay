@@ -17,7 +17,8 @@ class AccountingOut extends Model
         'note',
         'status',
         'type',
-        'is_tracks_added'
+        'is_tracks_added',
+        'admin_id'
     ];
 
     public function user()
