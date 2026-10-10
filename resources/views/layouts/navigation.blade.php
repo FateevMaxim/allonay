@@ -33,60 +33,62 @@
                 </div>
 
                 <!-- drawer component -->
-                <div id="drawer-right-example" class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-right-label">
-                    <button type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" >
-                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        <span class="sr-only">Закрыть</span>
-                    </button>
-                    @if(Auth::user()->code)
-                        <div class="p-2 mt-8 -mb-6">
-                            <p class="mb-6 text-dark font-bold">Ваш код: <span class="text-2xl">{{ Auth::user()->code }}</span></p>
+                <div id="drawer-right-example" class="fixed top-0 right-0 z-40 h-screen overflow-y-auto transition-transform translate-x-full bg-slate-100 w-80" tabindex="-1" aria-labelledby="drawer-right-label">
+                    <div class="sticky top-0 z-10 flex items-center justify-between h-16 px-4 bg-white shadow-sm">
+                        <a href="{{ route('dashboard') }}">
+                            <img src="{{ asset('favicons/192x192.png') }}" class="w-12 h-12" alt="{{ config('app.name') }}">
+                        </a>
+                        <button type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg p-1.5 inline-flex items-center">
+                            <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                            <span class="sr-only">Закрыть</span>
+                        </button>
+                    </div>
+
+                    <div class="p-4 space-y-4">
+                        <!-- Адреса складов в Китае -->
+                        <div x-data="{ selected: null, copied: null }">
+                            <div class="grid grid-cols-2 gap-4">
+                                @foreach($warehouses as $name => $address)
+                                    <button type="button"
+                                            @click="selected = selected === {{ $loop->index }} ? null : {{ $loop->index }}"
+                                            :class="selected === {{ $loop->index }} ? 'border-blue-600 text-blue-700' : 'border-slate-200 text-gray-800'"
+                                            class="py-5 text-lg font-semibold text-center bg-white border-2 rounded-2xl shadow-sm focus:outline-none">
+                                        {{ $name }}
+                                    </button>
+                                @endforeach
+                            </div>
+
+                            @foreach($warehouses as $name => $address)
+                                <div x-show="selected === {{ $loop->index }}" style="display: none;" class="p-4 mt-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                                    <p class="text-sm text-gray-900 font-bold">Адрес склада в Китае — {{ $name }}</p>
+                                    <p class="mt-3 text-sm text-gray-700 break-words">{{ $address }}</p>
+                                    <button type="button"
+                                            @click="copyText(@js($address)).then(() => { copied = {{ $loop->index }}; setTimeout(() => copied = null, 2000) })"
+                                            x-text="copied === {{ $loop->index }} ? 'Скопировано' : 'Копировать'"
+                                            class="w-full mt-4 focus:outline-none text-white bg-[#b6da3a] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-xl text-sm px-5 py-2.5">Копировать</button>
+                                </div>
+                            @endforeach
                         </div>
-                    @endif
 
-                    <div class="bg-[#b6da3a82] p-2 mt-8 mb-4">
-                        <p class="mb-6 text-sm text-dark font-bold">Адрес склада в Китае</p>
-                        <p class="mb-6 text-sm text-dark" id="china">@yield( 'chinaaddress' )</p>
-                        <p class="mb-6 text-sm text-dark" style="display: none;" id="chinaaddress">@yield( 'chinaaddress' )</p>
-                        <button onclick="copyText()" class="focus:outline-none text-white bg-[#b6da3a] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Копировать</button>
+                        @if(\Illuminate\Support\Facades\Auth::user()->type === 'othercity')
+                            <a href="{{ route('track_report_page') }}" class="block py-5 text-lg font-medium text-center text-gray-800 bg-white border border-slate-200 rounded-2xl shadow-sm hover:text-blue-700">Отчёт по трек кодам</a>
+                        @endif
+
+                        <a href="https://t.me/+9hY9nPs0GVIzYTk6" target="_blank" class="block py-5 text-lg font-medium text-center text-gray-800 bg-white border border-slate-200 rounded-2xl shadow-sm hover:text-blue-700">{{ __('Уроки по Pinduoduo') }}</a>
+                        <a href="https://t.me/onayall" target="_blank" class="block py-5 text-lg font-medium text-center text-gray-800 bg-white border border-slate-200 rounded-2xl shadow-sm hover:text-blue-700">{{ __('Telegram') }}</a>
+
+                        <!-- Button trigger modal -->
+                        <button
+                            type="button"
+                            class="block w-full py-5 text-sm font-semibold tracking-wide text-white uppercase rounded-2xl shadow-lg focus:outline-none"
+                            data-twe-toggle="modal"
+                            style="background-color: hsl(220.82deg 79.51% 47.84%);"
+                            data-twe-target="#exampleModalScrollable"
+                            data-twe-ripple-init
+                            data-twe-ripple-color="light">
+                            Соглашение при регистрации
+                        </button>
                     </div>
-
-                    <div class="bg-[#fab4b4] p-2 mt-4 mb-4">
-                        <p><span>Образец</span></p>
-                        <img src="{{asset('images/china.jpg')}}" alt="China">
-                    </div>
-
-                    <hr class="h-px mt-4 bg-gray-200 border-0">
-                    @if(\Illuminate\Support\Facades\Auth::user()->type === 'othercity')
-                        <a href="{{ route('track_report_page') }}"  class="grid grid-col-1 px-4 mt-6 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">Отчёт по трек кодам</a>
-                    @endif
-                    <hr class="h-px mt-4 bg-gray-200 border-0">
-
-                    <div class="p-2 mt-4 mb-2">
-                        <div class="grid grid-cols-1 gap-4">
-                            <a href="https://t.me/+9hY9nPs0GVIzYTk6" target="_blank" class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">{{ __('Уроки по Pinduoduo') }}</a>
-                        </div>
-                    </div>
-                    <div class="p-2 mt-4 mb-2">
-                        <div class="grid grid-cols-1 gap-4">
-                            <a href="https://t.me/onayall" target="_blank" class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">{{ __('Telegram') }}</a>
-                        </div>
-                    </div>
-                    <hr class="h-px mt-2 bg-gray-200 border-0">
-
-
-
-                    <!-- Button trigger modal -->
-                    <button
-                        type="button"
-                        class="inline-block rounded px-6 pb-2 pt-2.5 mt-4 ml-4 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2"
-                        data-twe-toggle="modal"
-                        style="background-color: hsl(220.82deg 79.51% 47.84%);"
-                        data-twe-target="#exampleModalScrollable"
-                        data-twe-ripple-init
-                        data-twe-ripple-color="light">
-                        Соглашение при регистрации
-                    </button>
 
                     <!-- Modal -->
                     <div
@@ -158,20 +160,34 @@
                         </div>
                     </div>--}}
 
-                    <hr class="h-px my-8 bg-gray-200 border-0">
-                    <div class="grid grid-cols-2 mt-4 gap-4">
-                        <a href="{{ route('profile.edit') }}" class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">{{ __('Профиль') }}</a>
-                        <form method="POST" action="{{ route('logout') }}" class="flex inline-flex"><a onclick="event.preventDefault();
-                          this.closest('form').submit();" class="w-full justify-center inline-flex cursor-pointer px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">{{ __('Выйти') }}</a></form>
+                    <div class="px-4 pb-6">
+                        <hr class="h-px mt-4 mb-8 bg-gray-200 border-0">
+                        <div class="grid grid-cols-2 gap-4">
+                            <a href="{{ route('profile.edit') }}" class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">{{ __('Профиль') }}</a>
+                            <form method="POST" action="{{ route('logout') }}" class="flex inline-flex"><a onclick="event.preventDefault();
+                              this.closest('form').submit();" class="w-full justify-center inline-flex cursor-pointer px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">{{ __('Выйти') }}</a></form>
+                        </div>
                     </div>
                 </div>
                 <script>
-                    function copyText() {
-                        /* Copy text into clipboard */
-                        var chinaaddress = $("#china").html();
-                        navigator.clipboard.writeText(chinaaddress);
+                    function copyText(text) {
+                        /* Copy text into clipboard. Неразрывные пробелы заменяем обычными, чтобы не вставлялись как &nbsp; */
+                        text = text.replace(/\u00a0/g, ' ');
+                        if (navigator.clipboard && window.isSecureContext) {
+                            return navigator.clipboard.writeText(text);
+                        }
+                        /* Запасной вариант для http и старых WebView, где Clipboard API недоступен */
+                        var textarea = document.createElement('textarea');
+                        textarea.value = text;
+                        textarea.setAttribute('readonly', '');
+                        textarea.style.position = 'fixed';
+                        textarea.style.opacity = '0';
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        var copied = document.execCommand('copy');
+                        textarea.remove();
+                        return copied ? Promise.resolve() : Promise.reject();
                     }
-
                 </script>
                     <script>
                         let deferredPrompt = null;
